@@ -1,6 +1,6 @@
-# guilhermestracini.github.io
+# GuilhermeStracini GitHub pages
 
-Guilherme Branco Stracini organization github.io page
+:trollface: Guilherme Branco Stracini organization github.io page
 
 [![wakatime](https://wakatime.com/badge/github/GuilhermeStracini/guilhermestracini.github.io.svg)](https://wakatime.com/badge/github/GuilhermeStracini/guilhermestracini.github.io)
 [![Maintainability](https://api.codeclimate.com/v1/badges/921da57d388d4cb4028f/maintainability)](https://codeclimate.com/github/GuilhermeStracini/guilhermestracini.github.io/maintainability)
