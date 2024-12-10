@@ -1,0 +1,44 @@
+/* Global Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #1f4037, #a2d9b7);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 280px; /* Ensure content isn't overlapping with floating links */
+}
+
+
+/* Header */
+header {
+  text-align: center;
+  margin: 20px 0;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin: 0;
+  color: #ffdd57;
+}
+
+/* Loading and Error Messages */
+.loading, .error {
+  margin: 20px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.repo-count-badge {
+  display: inline-block;
+  background-color: #2c3e50;  /* Dark green background for the badge */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 20px;
+}
