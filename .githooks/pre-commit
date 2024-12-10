@@ -13,4 +13,20 @@ then
     exit 1
 fi
 
-npm run lint
+# Check if package.json exists
+if [ ! -f "package.json" ]; then
+    echo "Error: package.json not found"
+    exit 1
+fi
+
+# Check if npm is installed
+if ! command -v npm >/dev/null 2>&1; then
+    echo "Error: npm is not installed"
+    exit 1
+fi
+
+# Run lint with error handling
+if ! npm run lint; then
+    echo "Linting failed"
+    exit 1
+fi
