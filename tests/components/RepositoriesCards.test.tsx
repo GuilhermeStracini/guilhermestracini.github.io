@@ -2,7 +2,6 @@
 import { render, screen } from "@testing-library/react";
 import RepositoriesCards from "../../src/components/RepositoriesCards"; // Adjust the path as needed
 import "@testing-library/jest-dom";
-import React from "react";
 import { RepositoriesCardsProps } from "../../src/types/RepositoriesCardsProps";
 
 describe("RepositoriesCards component", () => {

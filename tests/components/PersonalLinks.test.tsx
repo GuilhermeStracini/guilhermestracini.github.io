@@ -2,7 +2,6 @@
 import { render, screen } from "@testing-library/react";
 import PersonalLinks from "../../src/components/PersonalLinks"; // Adjust the path as needed
 import "@testing-library/jest-dom";
-import React from "react";
 
 describe("PersonalLinks component", () => {
   it("renders all personal links with the correct text and URLs", () => {

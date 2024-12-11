@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import Footer from "../../src/components/Footer";
 import '@testing-library/jest-dom';
-import React from "react";
 
 describe("Footer component", () => {
   it("renders the footer with developer information", () => {

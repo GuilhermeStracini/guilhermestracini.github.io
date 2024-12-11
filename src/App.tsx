@@ -12,9 +12,9 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const type = process.env.REACT_APP_GITHUB_TYPE || "orgs";
-  const username = process.env.REACT_APP_GITHUB_USERNAME || "GuilhermeStracini";
-  const baseUrl = process.env.REACT_APP_GITHUB_API_URL || "https://api.github.com";
+  const type = "orgs";
+  const username = "GuilhermeStracini";
+  const baseUrl = "https://api.github.com";
   const url = `${baseUrl}/${type}/${username}/repos?per_page=100&sort=full_name&order=asc`;
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const App: React.FC = () => {
       .get(url)
       .then((response) => {
         setRepos(response.data);
-        setRepoCount(response.data.length); 
+        setRepoCount(response.data.length);
         setLoading(false);
       })
       .catch(() => {
