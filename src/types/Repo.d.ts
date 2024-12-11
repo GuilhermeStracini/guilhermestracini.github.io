@@ -1,7 +1,7 @@
 export interface Repo {
     id: number;
     name: string;
-    description: string;
+    description: string | null;
     html_url: string;
   }
   
