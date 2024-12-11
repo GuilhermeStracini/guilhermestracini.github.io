@@ -6,7 +6,7 @@ import PersonalLinks from "./components/PersonalLinks";
 import Footer from "./components/Footer";
 import "./App.css";
 
-const App = () => {
+const App: React.FC = () => {
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
   const [repoCount, setRepoCount] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);

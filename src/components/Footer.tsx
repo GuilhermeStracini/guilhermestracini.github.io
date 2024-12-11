@@ -1,6 +1,6 @@
 import "./Footer.css";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer>
       Developed by{" "}

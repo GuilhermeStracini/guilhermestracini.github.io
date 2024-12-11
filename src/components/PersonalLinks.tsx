@@ -20,7 +20,7 @@ const links = [
   { name: "Instagram", url: "https://www.instagram.com/gui.stracini/", icon: faInstagram },
 ];
 
-const PersonalLinks = () => {
+const PersonalLinks: React.FC = () => {
   return (
     <div className="personal-links">
       <h2>Connect with Me</h2>
