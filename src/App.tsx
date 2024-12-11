@@ -12,9 +12,10 @@ const App = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const type = "orgs";
-  const username = "GuilhermeStracini";
-  const url = `https://api.github.com/${type}/${username}/repos?per_page=100&sort=full_name&order=asc`;
+  const type = process.env.REACT_APP_GITHUB_TYPE || "orgs";
+  const username = process.env.REACT_APP_GITHUB_USERNAME || "GuilhermeStracini";
+  const baseUrl = process.env.REACT_APP_GITHUB_API_URL || "https://api.github.com";
+  const url = `${baseUrl}/${type}/${username}/repos?per_page=100&sort=full_name&order=asc`;
 
   useEffect(() => {
     axios
