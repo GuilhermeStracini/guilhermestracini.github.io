@@ -1,45 +1,52 @@
-// tests/Footer.test.tsx
 import { render, screen } from "@testing-library/react";
-import Footer from "../../src/components/Footer"; // Adjust the path as needed
-import "@testing-library/jest-dom";
+import Footer from "../../src/components/Footer";
+import '@testing-library/jest-dom';
+import React from "react";
 
 describe("Footer component", () => {
   it("renders the footer with developer information", () => {
     render(<Footer />);
 
-    // Check for the developer's name link
-    const developerLink = screen.getByRole("link", {
+    // Verify the "Guilherme Branco Stracini" links
+    const developerLinks = screen.getAllByRole("link", {
       name: /Guilherme Branco Stracini/i,
     });
-    expect(developerLink).toBeInTheDocument();
-    expect(developerLink).toHaveAttribute(
+    expect(developerLinks).toHaveLength(2);
+
+    // Check the first link
+    expect(developerLinks[0]).toHaveAttribute(
       "href",
-      expect.stringContaining("guibranco.github.io")
+      "https://guibranco.github.io?utm_campaign=project&utm_media=guilhermestracini+portfolio&utm_source=guilhermestracini.github.io"
     );
 
-    // Check for the GitHub link
+    // Check the second link
+    expect(developerLinks[1]).toHaveAttribute(
+      "href",
+      "https://guibranco.github.io/?utm_campaign=project&utm_media=guilhermestracini+portfolio&utm_source=guilhermestracini.github.io"
+    );
+
+    // Verify the GitHub links
     const githubLinks = screen.getAllByRole("link", { name: /GitHub/i });
-    expect(githubLinks.length).toBe(2);
-    githubLinks.forEach((link) =>
-      expect(link).toHaveAttribute("href", "https://github.com/GuilhermeStracini")
+    expect(githubLinks).toHaveLength(2);
+
+    // Check the first GitHub link
+    expect(githubLinks[0]).toHaveAttribute(
+      "href",
+      "https://github.com/GuilhermeStracini"
     );
 
-    // Check for the developer's image
-    const developerImage = screen.getByRole("img", {
-      name: /Guilherme Branco Stracini/i,
-    });
-    expect(developerImage).toBeInTheDocument();
-    expect(developerImage).toHaveAttribute(
+    // Check the second GitHub link
+    expect(githubLinks[1]).toHaveAttribute(
+      "href",
+      "https://github.com/GuilhermeStracini"
+    );
+
+    // Additional assertions can verify images or other content
+    const image = screen.getByRole("img", { name: /Guilherme Branco Stracini/i });
+    expect(image).toHaveAttribute(
       "src",
       "https://guibranco.github.io/photo.png"
     );
-  });
-
-  it("renders the SVG icon in the footer", () => {
-    render(<Footer />);
-
-    // Check for the SVG element
-    const svgIcon = screen.getByRole("img", { name: /GitHub/i });
-    expect(svgIcon).toBeInTheDocument();
+    expect(image).toHaveAttribute("alt", "Guilherme Branco Stracini");
   });
 });

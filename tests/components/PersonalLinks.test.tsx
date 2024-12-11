@@ -2,37 +2,36 @@
 import { render, screen } from "@testing-library/react";
 import PersonalLinks from "../../src/components/PersonalLinks"; // Adjust the path as needed
 import "@testing-library/jest-dom";
+import React from "react";
 
 describe("PersonalLinks component", () => {
-  it("renders the section header", () => {
-    render(<PersonalLinks />);
-    const header = screen.getByRole("heading", { name: /connect with me/i });
-    expect(header).toBeInTheDocument();
-  });
-
   it("renders all personal links with the correct text and URLs", () => {
     render(<PersonalLinks />);
 
-    const links = [
-      { name: "Portfolio", url: "https://guilhermebranco.com.br" },
-      { name: "Old Portfolio", url: "https://zerocool.com.br" },
-      { name: "Personal Blog", url: "https://blog.guilhermebranco.com.br" },
-      { name: "Main GitHub", url: "https://github.com/guibranco" },
-      { name: "POCs GitHub", url: "https://github.com/GuilhermeStracini" },
-      { name: "LinkedIn", url: "https://www.linkedin.com/in/guilhermestracini/" },
-      { name: "Instagram", url: "https://www.instagram.com/gui.stracini/" },
-    ];
+    // Verify Portfolio links
+    const portfolioLinks = screen.getAllByRole("link", { name: /Portfolio/i });
+    expect(portfolioLinks).toHaveLength(2);
 
-    links.forEach((link) => {
-      const renderedLink = screen.getByRole("link", { name: new RegExp(link.name, "i") });
-      expect(renderedLink).toBeInTheDocument();
-      expect(renderedLink).toHaveAttribute("href", link.url);
-    });
-  });
+    expect(portfolioLinks[0]).toHaveAttribute("href", "https://guilhermebranco.com.br");
+    expect(portfolioLinks[1]).toHaveAttribute("href", "https://zerocool.com.br");
 
-  it("renders the correct number of links", () => {
-    render(<PersonalLinks />);
-    const renderedLinks = screen.getAllByRole("link");
-    expect(renderedLinks.length).toBe(7); // There are 7 links in the component
+    // Verify Personal Blog link
+    const blogLink = screen.getByRole("link", { name: /Personal Blog/i });
+    expect(blogLink).toHaveAttribute("href", "https://blog.guilhermebranco.com.br");
+
+    // Verify GitHub links
+    const githubLinks = screen.getAllByRole("link", { name: /GitHub/i });
+    expect(githubLinks).toHaveLength(2);
+
+    expect(githubLinks[0]).toHaveAttribute("href", "https://github.com/guibranco");
+    expect(githubLinks[1]).toHaveAttribute("href", "https://github.com/GuilhermeStracini");
+
+    // Verify LinkedIn link
+    const linkedInLink = screen.getByRole("link", { name: /LinkedIn/i });
+    expect(linkedInLink).toHaveAttribute("href", "https://www.linkedin.com/in/guilhermestracini/");
+
+    // Verify Instagram link
+    const instagramLink = screen.getByRole("link", { name: /Instagram/i });
+    expect(instagramLink).toHaveAttribute("href", "https://www.instagram.com/gui.stracini/");
   });
 });

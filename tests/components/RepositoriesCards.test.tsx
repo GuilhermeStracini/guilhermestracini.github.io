@@ -2,7 +2,19 @@
 import { render, screen } from "@testing-library/react";
 import RepositoriesCards from "../../src/components/RepositoriesCards"; // Adjust the path as needed
 import "@testing-library/jest-dom";
-import { RepositoriesCardsProps } from "../../src/components/RepositoriesCardsProps";
+import React from "react";
+type Repository = {
+  id: number;
+  name: string;
+  stargazers_count: number;
+  description: string | null;
+  html_url: string;
+  is_template: boolean;
+};
+
+type RepositoriesCardsProps = {
+  repos: Repository[];
+};
 
 describe("RepositoriesCards component", () => {
   const mockRepos: RepositoriesCardsProps["repos"] = [
@@ -32,7 +44,7 @@ describe("RepositoriesCards component", () => {
 
   it("renders repository details correctly", () => {
     render(<RepositoriesCards repos={mockRepos} />);
-
+  
     // Verify the first repository details
     const repoOne = screen.getByText("Repository One");
     expect(repoOne).toBeInTheDocument();
@@ -40,10 +52,13 @@ describe("RepositoriesCards component", () => {
     expect(repoOneStars).toBeInTheDocument();
     const repoOneDescription = screen.getByText("A sample repository");
     expect(repoOneDescription).toBeInTheDocument();
-    const repoOneLink = screen.getByRole("link", { name: /view repository/i });
-    expect(repoOneLink).toHaveAttribute("href", "https://github.com/user/repository-one");
-    expect(screen.queryByText("Template")).not.toBeInTheDocument();
-
+  
+    // Verify all links and their URLs
+    const links = screen.getAllByRole("link", { name: /view repository/i });
+    expect(links).toHaveLength(2);
+    expect(links[0]).toHaveAttribute("href", "https://github.com/user/repository-one");
+    expect(links[1]).toHaveAttribute("href", "https://github.com/user/template-repo");
+  
     // Verify the second repository details
     const templateRepo = screen.getByText("Template Repo");
     expect(templateRepo).toBeInTheDocument();
@@ -53,11 +68,8 @@ describe("RepositoriesCards component", () => {
     expect(templateRepoDescription).toBeInTheDocument();
     const templateBadge = screen.getByText("Template");
     expect(templateBadge).toBeInTheDocument();
-    const templateRepoLink = screen.getByRole("link", {
-      name: /view repository/i,
-    });
-    expect(templateRepoLink).toHaveAttribute("href", "https://github.com/user/template-repo");
   });
+  
 
   it("renders a default message when description is missing", () => {
     render(<RepositoriesCards repos={mockRepos} />);
