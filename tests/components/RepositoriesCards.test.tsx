@@ -3,18 +3,7 @@ import { render, screen } from "@testing-library/react";
 import RepositoriesCards from "../../src/components/RepositoriesCards"; // Adjust the path as needed
 import "@testing-library/jest-dom";
 import React from "react";
-type Repository = {
-  id: number;
-  name: string;
-  stargazers_count: number;
-  description: string | null;
-  html_url: string;
-  is_template: boolean;
-};
-
-type RepositoriesCardsProps = {
-  repos: Repository[];
-};
+import { RepositoriesCardsProps } from "../../src/types/RepositoriesCardsProps";
 
 describe("RepositoriesCards component", () => {
   const mockRepos: RepositoriesCardsProps["repos"] = [
