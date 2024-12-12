@@ -1,9 +1,14 @@
 export interface GitHubRepo {
-    id: number;
-    name: string;
-    html_url: string;
-    description: string | null;
-    is_template: boolean;
-    stargazers_count: number;
-  }
-  
+  id: number;
+  name: string;
+  full_name: string;
+  description: string | null;
+  html_url: string;
+  stargazers_count: number;
+  forks_count: number;
+  language: string | null;
+  topics: string[];
+  created_at: string;
+  updated_at: string;
+  visibility: 'public' | 'private';
+}
