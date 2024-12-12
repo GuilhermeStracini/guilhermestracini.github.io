@@ -3,6 +3,6 @@ export interface Repo {
     name: string;
     description: string | null;
     html_url: string;
-    is_template: bool;
+    is_template: boolean;
   }
   
