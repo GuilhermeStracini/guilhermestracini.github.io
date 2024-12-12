@@ -100,10 +100,14 @@ const App: React.FC = () => {
       <main>
         {loading ? (
           <div className="loading">Loading...</div>
-        ) : error ? (
-          <div className="error">{error}</div>
         ) : (
-          <RepositoriesCards repos={filterAndSortRepos()} />
+          <>
+            {error ? (
+              <div className="error">{error}</div>
+            ) : (
+              <RepositoriesCards repos={filterAndSortRepos()} />
+            )}
+          </>
         )}
       </main>
       <PersonalLinks />
