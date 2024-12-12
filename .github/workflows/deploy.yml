@@ -1,4 +1,4 @@
-name: Build & Deploy via ftp
+name: Build & Deploy
 
 on:
   push:
@@ -6,12 +6,13 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: 'pages'
   cancel-in-progress: true
 
 permissions:
-  pull-requests: write
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
@@ -29,7 +30,7 @@ jobs:
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v3.0.3
         with:
-          versionSpec: "6.x"
+          versionSpec: "6.0.5"
 
       - name: Determine Version
         id: gitversion
@@ -65,9 +66,32 @@ jobs:
           name: test-results
           path: test-results.json
 
+  deploy:
+    name: Deploy GH Pages
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: ./dist
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+          
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+  
   create_release:
     name: Create release
-    needs: build
+    needs: [build, deploy]
     runs-on: ubuntu-latest
     env:
       fullSemVer: ${{ needs.build.outputs.fullSemVer }}
