@@ -2,7 +2,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import axios from "axios";
 import App from "../src/App";
 import { GitHubRepo } from "../src/types/GitHubRepo";
-import { vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("axios");
 
