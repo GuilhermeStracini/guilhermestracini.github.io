@@ -4,16 +4,19 @@ import { GitHubRepo } from "./types/GitHubRepo";
 import RepositoriesCards from "./components/RepositoriesCards";
 import PersonalLinks from "./components/PersonalLinks";
 import Footer from "./components/Footer";
+import FilterBar from "./components/FilterBar";
 import "./App.css";
 
 const App: React.FC = () => {
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
-  const [filteredRepos, setFilteredRepos] = useState<GitHubRepo[]>([]);
   const [repoCount, setRepoCount] = useState<number>(0);
+  const [filteredCount, setFilteredCount] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [filter, setFilter] = useState<string>("all");
-  const [sort, setSort] = useState<string>("name");
+
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const [sortField, setSortField] = useState<string>("name");
+  const [sortOrder, setSortOrder] = useState<string>("asc");
 
   const type = "orgs";
   const username = "GuilhermeStracini";
@@ -26,7 +29,6 @@ const App: React.FC = () => {
       .then((response) => {
         setRepos(response.data);
         setRepoCount(response.data.length);
-        setFilteredRepos(response.data);
         setLoading(false);
       })
       .catch(() => {
@@ -35,92 +37,73 @@ const App: React.FC = () => {
       });
   }, [url]);
 
-  useEffect(() => {
-    let updatedRepos = [...repos];
-
-    // Apply filter
-    if (filter !== "all") {
-      updatedRepos = updatedRepos.filter((repo) => {
-        switch (filter) {
-          case "templates":
-            return repo.is_template;
-          case "poc":
-            return repo.name.toLowerCase().includes("poc");
-          case "hello-world":
-            return repo.name.toLowerCase().includes("hello-world");
-          case "misc":
-            return !repo.is_template &&
-              !repo.name.toLowerCase().includes("poc") &&
-              !repo.name.toLowerCase().includes("hello-world");
-          default:
-            return true;
-        }
-      });
-    }
-
-    // Apply sorting
-    updatedRepos.sort((a, b) => {
-      switch (sort) {
-        case "name":
-          return a.name.localeCompare(b.name);
-        case "stargazers":
-          return b.stargazers_count - a.stargazers_count;
-        case "recently-updated":
-          return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime();
-        case "type":
-          return a.is_template === b.is_template ? 0 : a.is_template ? -1 : 1;
-        default:
-          return 0;
-      }
+  const filterAndSortRepos = (): GitHubRepo[] => {
+    const filtered = repos.filter((repo) => {
+      if (!activeFilter) return true;
+      if (activeFilter === "template") return repo.is_template;
+      if (activeFilter === "poc")
+        return !repo.is_template && repo.name.toLowerCase().startsWith("poc");
+      if (activeFilter === "hello-world")
+        return (
+          !repo.is_template && repo.name.toLowerCase().startsWith("hello-world")
+        );
+      if (activeFilter === "misc")
+        return (
+          !repo.is_template &&
+          !repo.name.toLowerCase().startsWith("poc") &&
+          !repo.name.toLowerCase().startsWith("hello-world")
+        );
+      return true;
     });
 
-    setFilteredRepos(updatedRepos);
-  }, [filter, sort, repos]);
+    const sorted = [...filtered].sort((a, b) => {
+      const fieldA = a[sortField as keyof typeof a];
+      const fieldB = b[sortField as keyof typeof b];
+
+      if (fieldA === null || fieldB === null) return 0;
+
+      if (fieldA < fieldB) return sortOrder === "asc" ? -1 : 1;
+      if (fieldA > fieldB) return sortOrder === "asc" ? 1 : -1;
+      return 0;
+    });
+
+    return sorted;
+  };
+
+  useEffect(() => {
+    setFilteredCount(filterAndSortRepos().length);
+  }, [repos, activeFilter, sortField, sortOrder]);
+
+  const handleFilterChange = (filter: string): void => {
+    setActiveFilter(filter);
+  };
+
+  const handleSortChange = (field: string, order: string): void => {
+    setSortField(field);
+    setSortOrder(order);
+  };
 
   return (
     <div className="app">
       <header>
         <h1>GitHub Repositories</h1>
         <div className="repo-count-badge">
-          <span>{repoCount} Repositories</span>
+          <span>
+            {filteredCount} / {repoCount} Repositories
+          </span>
         </div>
       </header>
+      <FilterBar
+        onFilterChange={handleFilterChange}
+        onSortChange={handleSortChange}
+      />
       <main>
         {loading ? (
           <div className="loading">Loading...</div>
         ) : error ? (
           <div className="error">{error}</div>
         ) : (
-          <>
-            <div className="filter-bar">
-              <label>
-                Filter by:
-                <select
-                  value={filter}
-                  onChange={(e) => setFilter(e.target.value)}
-                >
-                  <option value="all">All</option>
-                  <option value="templates">Templates</option>
-                  <option value="poc">POC</option>
-                  <option value="hello-world">Hello-world</option>
-                  <option value="misc">Misc</option>
-                </select>
-              </label>
-              <label>
-                Sort by:
-                <select
-                  value={sort}
-                  onChange={(e) => setSort(e.target.value)}
-                >
-                  <option value="name">Name</option>
-                  <option value="stargazers">Stargazers</option>
-                  <option value="recently-updated">Recently Updated</option>
-                  <option value="type">Type</option>
-                </select>
-              </label>
-            </div>
-            <RepositoriesCards repos={filteredRepos} />
-          </>
+          <RepositoriesCards repos={filterAndSortRepos()} />
         )}
       </main>
       <PersonalLinks />

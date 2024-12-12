@@ -42,20 +42,3 @@ header h1 {
   font-weight: bold;
   margin-top: 20px;
 }
-
-.filter-bar {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.filter-bar label {
-  display: flex;
-  flex-direction: column;
-  font-size: 0.9rem;
-}
-
-.filter-bar select {
-  padding: 0.3rem;
-  font-size: 1rem;
-}
