@@ -57,7 +57,7 @@ jobs:
           path: dist/
 
       - name: Test
-        run: npm test -- --ci --json --outputFile=test-results.json
+        run: npm test
 
       - name: Upload test results
         if: always()
