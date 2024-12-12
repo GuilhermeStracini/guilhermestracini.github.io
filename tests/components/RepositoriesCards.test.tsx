@@ -30,6 +30,12 @@ describe("RepositoriesCards component", () => {
     expect(cards).toHaveLength(2);
   });
 
+  it("renders no cards when repositories array is empty", () => {
+    render(<RepositoriesCards repos={[]} />);
+    const cards = screen.queryAllByRole("heading", { level: 2 });
+    expect(cards).toHaveLength(0);
+  });
+
   it("renders repository details correctly", () => {
     render(<RepositoriesCards repos={mockRepos} />);
   
