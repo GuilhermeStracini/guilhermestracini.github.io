@@ -8,8 +8,22 @@ vi.mock("axios");
 
 describe("App component", () => {
   const mockRepos: GitHubRepo[] = [
-    { id: 1, name: "Repo1", stargazers_count: 10, is_template: false, description: "Description 1", html_url: "https://github.com/Repo1" },
-    { id: 2, name: "Repo2", stargazers_count: 20, is_template: true, description: "Description 2", html_url: "https://github.com/Repo2" },
+    {
+      id: 1,
+      name: "Repo1",
+      stargazers_count: 10,
+      is_template: false,
+      description: "Description 1",
+      html_url: "https://github.com/Repo1",
+    },
+    {
+      id: 2,
+      name: "Repo2",
+      stargazers_count: 20,
+      is_template: true,
+      description: "Description 2",
+      html_url: "https://github.com/Repo2",
+    },
   ];
 
   afterEach(() => {
@@ -28,7 +42,9 @@ describe("App component", () => {
 
     render(<App />);
     await waitFor(() => {
-      expect(screen.getByText(/failed to load repositories/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/failed to load repositories/i)
+      ).toBeInTheDocument();
     });
   });
 
