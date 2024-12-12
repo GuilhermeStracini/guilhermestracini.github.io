@@ -11,4 +11,5 @@ export interface GitHubRepo {
   created_at: string;
   updated_at: string;
   visibility: 'public' | 'private';
+  is_template: boolean;
 }
