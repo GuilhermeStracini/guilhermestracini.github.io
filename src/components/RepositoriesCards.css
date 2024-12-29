@@ -73,6 +73,17 @@
   color: #f39c12;
 }
 
+.repo-card .clock-info {
+  display: block;
+  clear: both;
+  margin-bottom: 1rem;
+}
+
+.repo-card .clock-icon {
+  margin-right: 5px;
+  color: #3498db;
+}
+
 .repo-card .repo-details .template-badge {
   background-color: #e74c3c;
   color: white;

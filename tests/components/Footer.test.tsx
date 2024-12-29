@@ -31,13 +31,13 @@ describe("Footer component", () => {
     // Check the first GitHub link
     expect(githubLinks[0]).toHaveAttribute(
       "href",
-      "https://github.com/GuilhermeStracini"
+      "https://github.com/GuilhermeStracini/guilhermestracini.github.io"
     );
 
     // Check the second GitHub link
     expect(githubLinks[1]).toHaveAttribute(
       "href",
-      "https://github.com/GuilhermeStracini"
+      "https://github.com/GuilhermeStracini/guilhermestracini.github.io"
     );
 
     // Additional assertions can verify images or other content

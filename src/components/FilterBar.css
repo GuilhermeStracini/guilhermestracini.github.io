@@ -1,0 +1,59 @@
+.filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .filter-icons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .filter-icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #f8f9fa; /* Light for green background */
+    transition: color 0.2s ease, transform 0.2s ease;
+    outline: none;
+  }
+
+  .filter-icon:focus-visible {
+    outline: 2px solid #ffc107;
+    outline-offset: 2px;
+  }
+  
+  .filter-icon.active,
+  .filter-icon:hover {
+    color: #ffc107; /* Yellow for active state */
+    transform: scale(1.1); /* Slight zoom effect */
+  }
+  
+  .sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .sort-icon,
+  .sort-order-toggle {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #f8f9fa; /* Light for contrast */
+    transition: color 0.2s ease, transform 0.2s ease;
+    outline: none;
+  }
+
+  .sort-icon:focus-visible,
+  .sort-order-toggle:focus-visible {
+    outline: 2px solid #ffc107;
+    outline-offset: 2px;
+  }
+  
+  .sort-icon.active,
+  .sort-icon:hover,
+  .sort-order-toggle:hover {
+    color: #ffc107; /* Yellow for hover/active states */
+    transform: scale(1.1); /* Slight zoom effect */
+  }
+  
