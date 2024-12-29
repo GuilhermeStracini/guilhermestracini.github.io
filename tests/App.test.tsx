@@ -137,8 +137,8 @@ describe("App component", () => {
 
     const sortedRepos = await screen.findAllByText(/repo/i);
 
-    expect(sortedRepos[2]).toHaveTextContent(/hello-world-repo/i);    
-    expect(sortedRepos[5]).toHaveTextContent(/repo1/i); 
+    expect(sortedRepos[2]).toHaveTextContent(/hello-world-repo/i);
+    expect(sortedRepos[5]).toHaveTextContent(/repo1/i);
     expect(sortedRepos[7]).toHaveTextContent(/repo2/i);
   });
 
@@ -151,12 +151,12 @@ describe("App component", () => {
     const sortButton = screen.getByLabelText(/toggle sort order/i);
     const sortField = screen.getByLabelText(/sort by stargazers/i);
 
-    fireEvent.click(sortField); // Select stargazers as sort field    
+    fireEvent.click(sortField); // Select stargazers as sort field
     fireEvent.click(sortButton); // Toggle to descending
 
     const sortedRepos = await screen.findAllByText(/repo/i);
     expect(sortedRepos[2]).toHaveTextContent(/repo2/i);
-    expect(sortedRepos[4]).toHaveTextContent(/repo1/i); 
+    expect(sortedRepos[4]).toHaveTextContent(/repo1/i);
     expect(sortedRepos[6]).toHaveTextContent(/hello-world-repo/i);
   });
 

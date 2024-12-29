@@ -21,10 +21,10 @@ interface FilterIcon {
 }
 
 const FILTER_ICONS: FilterIcon[] = [
-  { icon: faFileCode, filter: 'template', title: 'Templates' },
-  { icon: faFlask, filter: 'poc', title: 'POC' },
-  { icon: faGlobe, filter: 'hello-world', title: 'Hello World' },
-  { icon: faEllipsisH, filter: 'misc', title: 'Miscellaneous' },
+  { icon: faFileCode, filter: "template", title: "Templates" },
+  { icon: faFlask, filter: "poc", title: "POC" },
+  { icon: faGlobe, filter: "hello-world", title: "Hello World" },
+  { icon: faEllipsisH, filter: "misc", title: "Miscellaneous" },
 ];
 
 interface FilterBarProps {
@@ -59,7 +59,11 @@ const FilterBar: React.FC<FilterBarProps> = ({
   };
 
   return (
-    <div className="filter-bar">
+    <div
+      className="filter-icons"
+      role="toolbar"
+      aria-label="Repository filters"
+    >
       <div className="filter-icons">
         {FILTER_ICONS.map(({ icon, filter, title }) => (
           <FontAwesomeIcon
@@ -68,11 +72,14 @@ const FilterBar: React.FC<FilterBarProps> = ({
             className={`filter-icon ${activeFilter === filter ? "active" : ""}`}
             onClick={() => handleFilterClick(filter)}
             title={title}
+            tabIndex={0}
+            aria-pressed={activeFilter === filter}
+            onKeyUp={(e) => e.key === "Enter" && handleFilterClick(filter)}
           />
         ))}
       </div>
 
-      <div className="sort-controls">
+      <div className="sort-controls" role="toolbar" aria-label="Repository sort controls">
         <FontAwesomeIcon
           icon={faSortAlpha}
           className={`sort-icon ${sortField === "name" ? "active" : ""}`}

@@ -14,8 +14,8 @@ describe('FilterBar Component', () => {
   it('should render filter icons correctly', () => {
     render(<FilterBar onFilterChange={onFilterChange} onSortChange={onSortChange} />);
     
-    const filterIcons = screen.getAllByRole('img');
-    expect(filterIcons).toHaveLength(8);
+    const filterIcons = screen.getAllByRole('img', { name: /(Templates|POC|Hello World|Miscellaneous)/ });
+    expect(filterIcons).toHaveLength(4);
   });
 
   it('should trigger filter change on icon click', () => {
