@@ -41,6 +41,13 @@
     cursor: pointer;
     color: #f8f9fa; /* Light for contrast */
     transition: color 0.2s ease, transform 0.2s ease;
+    outline: none;
+  }
+
+  .sort-icon:focus-visible,
+  .sort-order-toggle:focus-visible {
+    outline: 2px solid #ffc107;
+    outline-offset: 2px;
   }
   
   .sort-icon.active,
