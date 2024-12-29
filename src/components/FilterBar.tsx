@@ -5,7 +5,8 @@ import {
   faFlask,
   faGlobe,
   faEllipsisH,
-  faSortAlphaDown,
+  faSortAlphaAsc,
+  faSortAlphaDesc,
   faStar,
   faClock,
   faSort,
@@ -21,6 +22,7 @@ const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange, onSortChange }) =
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [sortField, setSortField] = useState<string>("name");
   const [sortOrder, setSortOrder] = useState<string>("asc");
+  const [faSortAlpha, setFaSortAlpha] = useState(faSortAlphaAsc);
 
   const handleFilterClick = (filter: string): void => {
     setActiveFilter(filter === activeFilter ? null : filter);
@@ -36,6 +38,7 @@ const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange, onSortChange }) =
     const newOrder = sortOrder === "asc" ? "desc" : "asc";
     setSortOrder(newOrder);
     onSortChange(sortField, newOrder);
+    setFaSortAlpha(newOrder === "asc" ? faSortAlphaAsc : faSortAlphaDesc);
   };
 
   return (
@@ -69,15 +72,15 @@ const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange, onSortChange }) =
 
       <div className="sort-controls">
         <FontAwesomeIcon
-          icon={faSortAlphaDown}
+          icon={faSortAlpha}
           className={`sort-icon ${sortField === "name" ? "active" : ""}`}
           onClick={() => handleSortFieldClick("name")}
           title="Sort by Name"
         />
         <FontAwesomeIcon
           icon={faStar}
-          className={`sort-icon ${sortField === "stargazers" ? "active" : ""}`}
-          onClick={() => handleSortFieldClick("stargazers")}
+          className={`sort-icon ${sortField === "stargazers_count" ? "active" : ""}`}
+          onClick={() => handleSortFieldClick("stargazers_count")}
           title="Sort by Stargazers"
         />
         <FontAwesomeIcon

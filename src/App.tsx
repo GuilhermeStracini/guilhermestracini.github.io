@@ -62,6 +62,10 @@ const App: React.FC = () => {
 
       if (fieldA === null || fieldB === null) return 0;
 
+      if(typeof fieldA === "string" && typeof fieldB === "string") {
+        return sortOrder === "asc" ? fieldA.localeCompare(fieldB) : fieldB.localeCompare(fieldA);
+      }
+
       if (fieldA < fieldB) return sortOrder === "asc" ? -1 : 1;
       if (fieldA > fieldB) return sortOrder === "asc" ? 1 : -1;
       return 0;
