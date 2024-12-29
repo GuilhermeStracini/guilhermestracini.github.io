@@ -9,6 +9,9 @@ import {
 import "./RepositoriesCards.css";
 const formatDate = (isoDate: string): string => {
   const date = new Date(isoDate);
+  if (isNaN(date.valueOf())) {
+    return "Unknown date";
+  }
   return new Intl.DateTimeFormat("pt-BR", {
     hour: "2-digit",
     minute: "2-digit",
