@@ -59,12 +59,12 @@ const FilterBar: React.FC<FilterBarProps> = ({
   };
 
   return (
-    <div
-      className="filter-icons"
-      role="toolbar"
-      aria-label="Repository filters"
-    >
-      <div className="filter-icons">
+    <div className="filter-bar">
+      <div
+        className="filter-icons"
+        role="toolbar"
+        aria-label="Repository filters"
+      >
         {FILTER_ICONS.map(({ icon, filter, title }) => (
           <FontAwesomeIcon
             key={filter}
@@ -79,12 +79,19 @@ const FilterBar: React.FC<FilterBarProps> = ({
         ))}
       </div>
 
-      <div className="sort-controls" role="toolbar" aria-label="Repository sort controls">
+      <div
+        className="sort-controls"
+        role="toolbar"
+        aria-label="Repository sort controls"
+      >
         <FontAwesomeIcon
           icon={faSortAlpha}
           className={`sort-icon ${sortField === "name" ? "active" : ""}`}
           onClick={() => handleSortFieldClick("name")}
           title="Sort by Name"
+          tabIndex={0}
+          aria-pressed={sortField === "name"}
+          onKeyUp={(e) => e.key === "Enter" && handleSortFieldClick("name")}
         />
         <FontAwesomeIcon
           icon={faStar}
