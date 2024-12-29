@@ -13,12 +13,22 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./FilterBar.css";
 
+const FILTER_ICONS = [
+  { icon: faFileCode, filter: "template", title: "Templates" },
+  { icon: faFlask, filter: "poc", title: "POC" },
+  { icon: faGlobe, filter: "hello-world", title: "Hello World" },
+  { icon: faEllipsisH, filter: "misc", title: "Miscellaneous" },
+] as const;
+
 interface FilterBarProps {
   onFilterChange: (filter: string) => void;
   onSortChange: (sortField: string, sortOrder: string) => void;
 }
 
-const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange, onSortChange }) => {
+const FilterBar: React.FC<FilterBarProps> = ({
+  onFilterChange,
+  onSortChange,
+}) => {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [sortField, setSortField] = useState<string>("name");
   const [sortOrder, setSortOrder] = useState<string>("asc");
@@ -64,7 +74,9 @@ const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange, onSortChange }) =
         />
         <FontAwesomeIcon
           icon={faStar}
-          className={`sort-icon ${sortField === "stargazers_count" ? "active" : ""}`}
+          className={`sort-icon ${
+            sortField === "stargazers_count" ? "active" : ""
+          }`}
           onClick={() => handleSortFieldClick("stargazers_count")}
           title="Sort by Stargazers"
         />
