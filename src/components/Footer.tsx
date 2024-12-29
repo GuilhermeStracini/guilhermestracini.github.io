@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
       </a>{" "}
       | Repository{" "}
       <a
-        href="https://github.com/GuilhermeStracini"
+        href="https://github.com/GuilhermeStracini/guilhermestracini.github.io"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
         </svg>
       </a>
       <a
-        href="https://github.com/GuilhermeStracini"
+        href="https://github.com/GuilhermeStracini/guilhermestracini.github.io"
         target="_blank"
         rel="noopener noreferrer"
       >
