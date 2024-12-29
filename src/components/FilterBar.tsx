@@ -54,16 +54,30 @@ const FilterBar: React.FC<FilterBarProps> = ({
   return (
     <div className="filter-bar">
       <div className="filter-icons">
-        {FILTER_ICONS.map(({ icon, filter, title }) => (
-          <FontAwesomeIcon
-            key={filter}
-            icon={icon}
-            className={`filter-icon ${activeFilter === filter ? "active" : ""}`}
-            onClick={() => handleFilterClick(filter)}
-            title={title}
-          />
-        ))}
-      </div>
+interface FilterIcon {
+  icon: IconDefinition;
+  filter: string;
+  title: string;
+}
+
+const FILTER_ICONS: FilterIcon[] = [
+  { icon: faFileCode, filter: 'template', title: 'Templates' },
+  { icon: faFlask, filter: 'poc', title: 'POC' },
+  { icon: faGlobe, filter: 'hello-world', title: 'Hello World' },
+  { icon: faEllipsisH, filter: 'misc', title: 'Miscellaneous' },
+];
+
+<div className="filter-icons">
+  {FILTER_ICONS.map(({ icon, filter, title }) => (
+    <FontAwesomeIcon
+      key={filter}
+      icon={icon}
+      className={`filter-icon ${activeFilter === filter ? "active" : ""}`}
+      onClick={() => handleFilterClick(filter)}
+      title={title}
+    />
+  ))}
+</div>
 
       <div className="sort-controls">
         <FontAwesomeIcon
