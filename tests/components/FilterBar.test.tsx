@@ -1,80 +1,62 @@
-import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
-import FilterBar from "../components/FilterBar";
+import { render, screen, fireEvent } from '@testing-library/react';
+import { vi } from 'vitest';
+import FilterBar from '../../src/components/FilterBar';
 
-describe("FilterBar component", () => {
-  const mockOnFilterChange = jest.fn();
-  const mockOnSortChange = jest.fn();
+describe('FilterBar Component', () => {
+  let onFilterChange: vi.Mock;
+  let onSortChange: vi.Mock;
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    onFilterChange = vi.fn();
+    onSortChange = vi.fn();
   });
 
-  it("renders all filter buttons", () => {
-    render(
-      <FilterBar onFilterChange={mockOnFilterChange} onSortChange={mockOnSortChange} />
-    );
+  it('should render filter icons correctly', () => {
+    render(<FilterBar onFilterChange={onFilterChange} onSortChange={onSortChange} />);
+    
+    const filterIcons = screen.getAllByRole('img');
+    expect(filterIcons).toHaveLength(4);
 
-    const buttons = screen.getAllByRole("button");
-    expect(buttons.length).toBe(5); // Four filters + one sort toggle
-    expect(screen.getByLabelText(/all repositories/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/templates/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/poc/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/hello-world/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/misc/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/toggle sort order/i)).toBeInTheDocument();
+    const filterTitles = ['Templates', 'POC', 'Hello World', 'Miscellaneous'];
+    filterIcons.forEach((icon, index) => {
+      expect(icon).toHaveAttribute('title', filterTitles[index]);
+    });
   });
 
-  it("calls the onFilterChange callback when a filter button is clicked", () => {
-    render(
-      <FilterBar onFilterChange={mockOnFilterChange} onSortChange={mockOnSortChange} />
-    );
+  it('should trigger filter change on icon click', () => {
+    render(<FilterBar onFilterChange={onFilterChange} onSortChange={onSortChange} />);
+    
+    const filterIcon = screen.getByTitle('Templates');
+    fireEvent.click(filterIcon);
 
-    const templateButton = screen.getByLabelText(/templates/i);
-    fireEvent.click(templateButton);
-
-    expect(mockOnFilterChange).toHaveBeenCalledTimes(1);
-    expect(mockOnFilterChange).toHaveBeenCalledWith("template");
+    expect(onFilterChange).toHaveBeenCalledWith('template');
+    
+    fireEvent.click(filterIcon); // Clicking again should reset filter
+    expect(onFilterChange).toHaveBeenCalledWith('');
   });
 
-  it("sets the correct active filter button", () => {
-    render(
-      <FilterBar onFilterChange={mockOnFilterChange} onSortChange={mockOnSortChange} />
-    );
+  it('should trigger sort field change on sort icon click', () => {
+    render(<FilterBar onFilterChange={onFilterChange} onSortChange={onSortChange} />);
+    
+    const nameSortIcon = screen.getByTitle('Sort by Name');
+    fireEvent.click(nameSortIcon);
+    
+    expect(onSortChange).toHaveBeenCalledWith('name', 'asc');
 
-    const allButton = screen.getByLabelText(/all repositories/i);
-    fireEvent.click(allButton);
-    expect(allButton).toHaveClass("active");
+    const stargazerSortIcon = screen.getByTitle('Sort by Stargazers');
+    fireEvent.click(stargazerSortIcon);
+
+    expect(onSortChange).toHaveBeenCalledWith('stargazers_count', 'asc');
   });
 
-  it("calls the onSortChange callback when the sort toggle is clicked", () => {
-    render(
-      <FilterBar onFilterChange={mockOnFilterChange} onSortChange={mockOnSortChange} />
-    );
-
-    const sortButton = screen.getByLabelText(/toggle sort order/i);
-    fireEvent.click(sortButton);
-
-    expect(mockOnSortChange).toHaveBeenCalledTimes(1);
-    expect(mockOnSortChange).toHaveBeenCalledWith("asc", "desc");
-  });
-
-  it("toggles sort order icon correctly", () => {
-    render(
-      <FilterBar onFilterChange={mockOnFilterChange} onSortChange={mockOnSortChange} />
-    );
-
-    const sortButton = screen.getByLabelText(/toggle sort order/i);
-
-    // Initial icon state (ASC)
-    expect(sortButton).toHaveClass("fa-arrow-up");
-
-    // Click to toggle to DESC
-    fireEvent.click(sortButton);
-    expect(sortButton).toHaveClass("fa-arrow-down");
-
-    // Click again to toggle back to ASC
-    fireEvent.click(sortButton);
-    expect(sortButton).toHaveClass("fa-arrow-up");
+  it('should toggle sort order when clicking sort order icon', () => {
+    render(<FilterBar onFilterChange={onFilterChange} onSortChange={onSortChange} />);
+    
+    const sortOrderIcon = screen.getByTitle('Toggle Sort Order (ASC)');
+    fireEvent.click(sortOrderIcon);
+    expect(onSortChange).toHaveBeenCalledWith('name', 'desc');
+    
+    fireEvent.click(sortOrderIcon);
+    expect(onSortChange).toHaveBeenCalledWith('name', 'asc');
   });
 });

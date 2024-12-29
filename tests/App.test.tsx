@@ -21,7 +21,7 @@ describe("App component", () => {
       topics: [],
       created_at: "",
       updated_at: "",
-      visibility: "public"
+      visibility: "public",
     },
     {
       id: 2,
@@ -36,7 +36,7 @@ describe("App component", () => {
       topics: [],
       created_at: "",
       updated_at: "",
-      visibility: "public"
+      visibility: "public",
     },
     {
       id: 3,
@@ -51,7 +51,7 @@ describe("App component", () => {
       topics: [],
       created_at: "",
       updated_at: "",
-      visibility: "public"
+      visibility: "public",
     },
   ];
 
@@ -113,7 +113,7 @@ describe("App component", () => {
     render(<App />);
     await waitFor(() => screen.getByText(/repo2/i)); // Ensure data is loaded
 
-    const helloWorldButton = screen.getByLabelText(/hello-world/i);
+    const helloWorldButton = screen.getByTitle(/Hello World/i);
     fireEvent.click(helloWorldButton);
 
     await waitFor(() => {
@@ -131,16 +131,15 @@ describe("App component", () => {
     render(<App />);
     await waitFor(() => screen.getByText(/repo2/i)); // Ensure data is loaded
 
-    const sortButton = screen.getByLabelText(/toggle sort order/i);
     const sortField = screen.getByLabelText(/sort by stargazers/i);
 
     fireEvent.click(sortField); // Select stargazers as sort field
-    fireEvent.click(sortButton); // Toggle to ascending order
 
     const sortedRepos = await screen.findAllByText(/repo/i);
-    expect(sortedRepos[0]).toHaveTextContent(/hello-world-repo/i);
-    expect(sortedRepos[1]).toHaveTextContent(/repo1/i);
-    expect(sortedRepos[2]).toHaveTextContent(/repo2/i);
+
+    expect(sortedRepos[2]).toHaveTextContent(/hello-world-repo/i);    
+    expect(sortedRepos[5]).toHaveTextContent(/repo1/i); 
+    expect(sortedRepos[7]).toHaveTextContent(/repo2/i);
   });
 
   it("toggles sorting order to descending and sorts correctly", async () => {
@@ -152,14 +151,13 @@ describe("App component", () => {
     const sortButton = screen.getByLabelText(/toggle sort order/i);
     const sortField = screen.getByLabelText(/sort by stargazers/i);
 
-    fireEvent.click(sortField); // Select stargazers as sort field
-    fireEvent.click(sortButton); // Toggle to ascending
+    fireEvent.click(sortField); // Select stargazers as sort field    
     fireEvent.click(sortButton); // Toggle to descending
 
     const sortedRepos = await screen.findAllByText(/repo/i);
-    expect(sortedRepos[0]).toHaveTextContent(/repo2/i);
-    expect(sortedRepos[1]).toHaveTextContent(/repo1/i);
-    expect(sortedRepos[2]).toHaveTextContent(/hello-world-repo/i);
+    expect(sortedRepos[2]).toHaveTextContent(/repo2/i);
+    expect(sortedRepos[4]).toHaveTextContent(/repo1/i); 
+    expect(sortedRepos[6]).toHaveTextContent(/hello-world-repo/i);
   });
 
   it("renders the PersonalLinks and Footer components", async () => {
@@ -169,6 +167,44 @@ describe("App component", () => {
     await waitFor(() => {
       expect(screen.getByText(/connect with me/i)).toBeInTheDocument();
       expect(screen.getByText(/developed by/i)).toBeInTheDocument();
+    });
+  });
+
+  it("updates the filtered count when filters are applied", async () => {
+    (axios.get as vi.Mock).mockResolvedValue({ data: mockRepos });
+
+    render(<App />);
+    await waitFor(() => screen.getByText(/repo2/i)); // Ensure data is loaded
+
+    const templateButton = screen.getByLabelText(/templates/i);
+    fireEvent.click(templateButton);
+
+    await waitFor(() => {
+      expect(screen.getByText(/1 \/ 3 repositories/i)).toBeInTheDocument();
+    });
+
+    const helloWorldButton = screen.getByLabelText(/Hello World/i);
+    fireEvent.click(helloWorldButton);
+
+    await waitFor(() => {
+      expect(screen.getByText(/1 \/ 3 repositories/i)).toBeInTheDocument();
+    });
+  });
+
+  it("updates the filtered count when sorting is applied", async () => {
+    (axios.get as vi.Mock).mockResolvedValue({ data: mockRepos });
+
+    render(<App />);
+    await waitFor(() => screen.getByText(/repo2/i)); // Ensure data is loaded
+
+    const sortButton = screen.getByLabelText(/toggle sort order/i);
+    const sortField = screen.getByLabelText(/sort by stargazers/i);
+
+    fireEvent.click(sortField); // Select stargazers as sort field
+    fireEvent.click(sortButton); // Toggle to ascending order
+
+    await waitFor(() => {
+      expect(screen.getByText(/3 \/ 3 repositories/i)).toBeInTheDocument();
     });
   });
 });

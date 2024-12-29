@@ -76,7 +76,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     setFilteredCount(filterAndSortRepos().length);
-  }, [repos, activeFilter, sortField, sortOrder]);
+  }, [repos, activeFilter, sortField, sortOrder, filterAndSortRepos]);
 
   const handleFilterChange = (filter: string): void => {
     setActiveFilter(filter);
