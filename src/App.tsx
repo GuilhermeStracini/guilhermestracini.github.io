@@ -42,7 +42,7 @@ const App: React.FC = () => {
       if (!activeFilter) return true;
       if (activeFilter === "template") return repo.is_template;
       if (activeFilter === "poc")
-        return !repo.is_template && repo.name.toLowerCase().startsWith("poc");
+        return !repo.is_template && repo.name.toLowerCase().startsWith("poc-");
       if (activeFilter === "hello-world")
         return (
           !repo.is_template && repo.name.toLowerCase().startsWith("hello-world")
@@ -50,7 +50,7 @@ const App: React.FC = () => {
       if (activeFilter === "misc")
         return (
           !repo.is_template &&
-          !repo.name.toLowerCase().startsWith("poc") &&
+          !repo.name.toLowerCase().startsWith("poc-") &&
           !repo.name.toLowerCase().startsWith("hello-world")
         );
       return true;

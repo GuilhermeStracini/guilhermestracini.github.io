@@ -9,7 +9,7 @@ import {
 import "./RepositoriesCards.css";
 const formatDate = (isoDate: string): string => {
   const date = new Date(isoDate);
-  if (isNaN(date.valueOf())) {
+  if (Number.isNaN(date.valueOf())) {
     return "Unknown date";
   }
   return new Intl.DateTimeFormat("pt-BR", {
