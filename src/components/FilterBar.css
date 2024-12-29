@@ -15,6 +15,12 @@
     cursor: pointer;
     color: #f8f9fa; /* Light for green background */
     transition: color 0.2s ease, transform 0.2s ease;
+    outline: none;
+  }
+
+  .filter-icon:focus-visible {
+    outline: 2px solid #ffc107;
+    outline-offset: 2px;
   }
   
   .filter-icon.active,
