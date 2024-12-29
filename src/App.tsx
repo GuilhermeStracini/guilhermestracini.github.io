@@ -37,7 +37,9 @@ const App: React.FC = () => {
       });
   }, [url]);
 
-  const filterAndSortRepos = (): GitHubRepo[] => {
+  import { useState, useEffect, useCallback, useMemo } from "react";
+
+  const filterAndSortRepos = useCallback((): GitHubRepo[] => {
     const filtered = repos.filter((repo) => {
       if (!activeFilter) return true;
       if (activeFilter === "template") return repo.is_template;
@@ -72,7 +74,9 @@ const App: React.FC = () => {
     });
 
     return sorted;
-  };
+  }, [repos, activeFilter, sortField, sortOrder]);
+
+  const filteredRepos = useMemo(() => filterAndSortRepos(), [filterAndSortRepos]);
 
   useEffect(() => {
     setFilteredCount(filterAndSortRepos().length);
