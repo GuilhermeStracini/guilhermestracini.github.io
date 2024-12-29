@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import axios from "axios";
 import { GitHubRepo } from "./types/GitHubRepo";
 import RepositoriesCards from "./components/RepositoriesCards";
@@ -37,8 +37,6 @@ const App: React.FC = () => {
       });
   }, [url]);
 
-  import { useState, useEffect, useCallback, useMemo } from "react";
-
   const filterAndSortRepos = useCallback((): GitHubRepo[] => {
     const filtered = repos.filter((repo) => {
       if (!activeFilter) return true;
@@ -76,7 +74,7 @@ const App: React.FC = () => {
     return sorted;
   }, [repos, activeFilter, sortField, sortOrder]);
 
-  const filteredRepos = useMemo(() => filterAndSortRepos(), [filterAndSortRepos]);
+   const filteredRepos =useMemo(() => filterAndSortRepos(), [filterAndSortRepos]);
 
   useEffect(() => {
     setFilteredCount(filterAndSortRepos().length);
@@ -113,7 +111,7 @@ const App: React.FC = () => {
             {error ? (
               <div className="error">{error}</div>
             ) : (
-              <RepositoriesCards repos={filterAndSortRepos()} />
+              <RepositoriesCards repos={filteredRepos} />
             )}
           </>
         )}
