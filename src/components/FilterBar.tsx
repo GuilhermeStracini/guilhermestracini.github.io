@@ -90,6 +90,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
           onClick={() => handleSortFieldClick("name")}
           title="Sort by Name"
           tabIndex={0}
+          role="button"
           aria-pressed={sortField === "name"}
           onKeyUp={(e) => e.key === "Enter" && handleSortFieldClick("name")}
         />
@@ -100,18 +101,34 @@ const FilterBar: React.FC<FilterBarProps> = ({
           }`}
           onClick={() => handleSortFieldClick("stargazers_count")}
           title="Sort by Stargazers"
+          tabIndex={0}
+          role="button"
+          aria-pressed={sortField === "stargazers_count"}
+          onKeyUp={(e) =>
+            e.key === "Enter" && handleSortFieldClick("stargazers_count")
+          }
         />
         <FontAwesomeIcon
           icon={faClock}
           className={`sort-icon ${sortField === "updated_at" ? "active" : ""}`}
           onClick={() => handleSortFieldClick("updated_at")}
           title="Sort by Recently Updated"
+          tabIndex={0}
+          role="button"
+          aria-pressed={sortField === "updated_at"}
+          onKeyUp={(e) =>
+            e.key === "Enter" && handleSortFieldClick("updated_at")
+          }
         />
         <FontAwesomeIcon
           icon={faSort}
           className="sort-order-toggle"
           onClick={toggleSortOrder}
           title={`Toggle Sort Order (${sortOrder.toUpperCase()})`}
+          tabIndex={0}
+          role="button"
+          aria-pressed={sortOrder === "asc"}
+          onKeyUp={(e) => e.key === "Enter" && toggleSortOrder()}
         />
       </div>
     </div>
