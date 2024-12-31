@@ -18,6 +18,8 @@ const App: React.FC = () => {
   const [sortField, setSortField] = useState<string>("name");
   const [sortOrder, setSortOrder] = useState<string>("asc");
 
+  const [searchQuery, setSearchQuery] = useState("");
+
   const type = "orgs";
   const username = "GuilhermeStracini";
   const baseUrl = "https://api.github.com";
@@ -39,6 +41,16 @@ const App: React.FC = () => {
 
   const filterAndSortRepos = useCallback((): GitHubRepo[] => {
     const filtered = repos.filter((repo) => {
+      if (searchQuery) {
+        const searchQueryLower = searchQuery.toLowerCase();
+        const foundInName = repo.name.toLowerCase().includes(searchQueryLower);
+        const foundInDescription = repo.description
+          ?.toLowerCase()
+          .includes(searchQueryLower);
+
+        if (!foundInName && !foundInDescription) return false;
+      }
+
       if (!activeFilter) return true;
       if (activeFilter === "template") return repo.is_template;
       if (activeFilter === "poc")
@@ -62,8 +74,10 @@ const App: React.FC = () => {
 
       if (fieldA === null || fieldB === null) return 0;
 
-      if(typeof fieldA === "string" && typeof fieldB === "string") {
-        return sortOrder === "asc" ? fieldA.localeCompare(fieldB) : fieldB.localeCompare(fieldA);
+      if (typeof fieldA === "string" && typeof fieldB === "string") {
+        return sortOrder === "asc"
+          ? fieldA.localeCompare(fieldB)
+          : fieldB.localeCompare(fieldA);
       }
 
       if (fieldA < fieldB) return sortOrder === "asc" ? -1 : 1;
@@ -72,13 +86,22 @@ const App: React.FC = () => {
     });
 
     return sorted;
-  }, [repos, activeFilter, sortField, sortOrder]);
+  }, [repos, activeFilter, sortField, sortOrder, searchQuery]);
 
-   const filteredRepos =useMemo(() => filterAndSortRepos(), [filterAndSortRepos]);
+  const filteredRepos = useMemo(
+    () => filterAndSortRepos(),
+    [filterAndSortRepos]
+  );
 
   useEffect(() => {
     setFilteredCount(filterAndSortRepos().length);
   }, [repos, activeFilter, sortField, sortOrder, filterAndSortRepos]);
+
+  const handleSearchChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    setSearchQuery(event.target.value);
+  };
 
   const handleFilterChange = (filter: string): void => {
     setActiveFilter(filter);
@@ -99,6 +122,14 @@ const App: React.FC = () => {
           </span>
         </div>
       </header>
+      <div className="search-bar-container">
+        <input
+          type="text"
+          placeholder="Search repositories..."
+          value={searchQuery}
+          onChange={handleSearchChange}
+        />
+      </div>
       <FilterBar
         onFilterChange={handleFilterChange}
         onSortChange={handleSortChange}
