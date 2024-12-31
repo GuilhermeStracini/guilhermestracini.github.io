@@ -48,7 +48,7 @@ const App: React.FC = () => {
           ?.toLowerCase()
           .includes(searchQueryLower);
 
-        if (!foundInName && !foundInDescription) return false;
+        if (!foundInName && !foundInDescription) {
       }
 
       if (!activeFilter) return true;
