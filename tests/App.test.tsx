@@ -137,9 +137,9 @@ describe("App component", () => {
 
     const sortedRepos = await screen.findAllByText(/repo/i);
 
-    expect(sortedRepos[2]).toHaveTextContent(/hello-world-repo/i);
-    expect(sortedRepos[5]).toHaveTextContent(/repo1/i);
-    expect(sortedRepos[7]).toHaveTextContent(/repo2/i);
+    expect(sortedRepos[3]).toHaveTextContent(/hello-world-repo/i);
+    expect(sortedRepos[6]).toHaveTextContent(/repo1/i);
+    expect(sortedRepos[8]).toHaveTextContent(/repo2/i);
   });
 
   it("toggles sorting order to descending and sorts correctly", async () => {
@@ -155,9 +155,9 @@ describe("App component", () => {
     fireEvent.click(sortButton); // Toggle to descending
 
     const sortedRepos = await screen.findAllByText(/repo/i);
-    expect(sortedRepos[2]).toHaveTextContent(/repo2/i);
-    expect(sortedRepos[4]).toHaveTextContent(/repo1/i);
-    expect(sortedRepos[6]).toHaveTextContent(/hello-world-repo/i);
+    expect(sortedRepos[3]).toHaveTextContent(/repo2/i);
+    expect(sortedRepos[5]).toHaveTextContent(/repo1/i);
+    expect(sortedRepos[7]).toHaveTextContent(/hello-world-repo/i);
   });
 
   it("renders the PersonalLinks and Footer components", async () => {
@@ -206,5 +206,23 @@ describe("App component", () => {
     await waitFor(() => {
       expect(screen.getByText(/3 \/ 3 repositories/i)).toBeInTheDocument();
     });
+  });
+
+  it("filters repositories by search query", async () => {
+    (axios.get as vi.Mock).mockResolvedValue({ data: mockRepos });
+
+    render(<App />);
+    await waitFor(() => screen.getByText(/repo2/i)); // Ensure data is loaded
+
+    const searchInput = screen.getByRole("searchbox");
+    fireEvent.change(searchInput, { target: { value: "hello" } });
+
+    await waitFor(() => {
+      expect(screen.queryByText(/repo1/i)).not.toBeInTheDocument();
+      expect(screen.queryByText(/repo2/i)).not.toBeInTheDocument();
+      expect(screen.getByText(/hello-world-repo/i)).toBeInTheDocument();
+    });
+
+    expect(screen.getByText(/1 \/ 3 repositories/i)).toBeInTheDocument();
   });
 });
