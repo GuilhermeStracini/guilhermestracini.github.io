@@ -1,6 +1,9 @@
 name: Build and Test on Pull Request
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
   workflow_dispatch:
 
@@ -33,3 +36,12 @@ jobs:
 
       - name: Test
         run: npm test
+
+      - name: Submit coverage to CodeClimate
+        uses: paambaati/codeclimate-action@v9.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: npm run test:coverage
+        
+           
