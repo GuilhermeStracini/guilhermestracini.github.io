@@ -42,3 +42,22 @@ header h1 {
   font-weight: bold;
   margin-top: 20px;
 }
+
+.search-bar-container {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.search-bar-container input {
+  width: 60%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.search-bar-container input:focus {
+  border-color: #4caf50;
+}
