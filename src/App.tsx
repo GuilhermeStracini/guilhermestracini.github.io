@@ -128,7 +128,13 @@ const App: React.FC = () => {
           placeholder="Search repositories..."
           value={searchQuery}
           onChange={handleSearchChange}
+          aria-label="Search repositories"
+          role="searchbox"
+          aria-describedby="search-description"
         />
+        <span id="search-description" className="sr-only">
+          Search repositories by name or description
+        </span>
       </div>
       <FilterBar
         onFilterChange={handleFilterChange}
