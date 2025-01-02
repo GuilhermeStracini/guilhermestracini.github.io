@@ -40,15 +40,17 @@ const App: React.FC = () => {
   }, [url]);
 
   const filterAndSortRepos = useCallback((): GitHubRepo[] => {
+    const searchQueryLower = searchQuery.toLowerCase();
     const filtered = repos.filter((repo) => {
-      if (searchQuery) {
-        const searchQueryLower = searchQuery.toLowerCase();
+      if (searchQuery) {        
         const foundInName = repo.name.toLowerCase().includes(searchQueryLower);
         const foundInDescription = repo.description
           ?.toLowerCase()
           .includes(searchQueryLower);
 
         if (!foundInName && !foundInDescription) {
+          return false;
+        }
       }
 
       if (!activeFilter) return true;
