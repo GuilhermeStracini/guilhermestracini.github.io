@@ -44,9 +44,8 @@ const App: React.FC = () => {
     const filtered = repos.filter((repo) => {
       if (searchQuery) {
         const foundInName = repo.name.toLowerCase().includes(searchQueryLower);
-        const foundInDescription = repo.description
-          ?.toLowerCase()
-          .includes(searchQueryLower);
+        const foundInDescription =
+          repo.description?.toLowerCase()?.includes(searchQueryLower) ?? false;
 
         if (!foundInName && !foundInDescription) {
           return false;
