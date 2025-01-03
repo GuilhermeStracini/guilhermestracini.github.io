@@ -1,3 +1,4 @@
+/* Personal Links - Fixed positioning and styling */
 .personal-links {
   position: fixed;
   left: 20px;
@@ -12,6 +13,7 @@
   z-index: 10;
 }
 
+/* Heading style for personal links */
 .personal-links h2 {
   font-size: 1.8rem;
   color: #ffdd57;
@@ -50,7 +52,7 @@
   color: #ffdd57;
 }
 
-/* Responsive Design */
+/* Responsive Design for screens smaller than 768px */
 @media (max-width: 768px) {
   .personal-links {
     position: fixed;
@@ -62,6 +64,7 @@
     text-align: center;
   }
 
+  /* Flexbox layout for list items */
   .personal-links ul {
     display: flex;
     flex-wrap: wrap;
@@ -83,6 +86,7 @@
   }
 }
 
+/* Responsive Design for screens smaller than 480px */
 @media (max-width: 480px) {
   .personal-links {
     width: 100%;
