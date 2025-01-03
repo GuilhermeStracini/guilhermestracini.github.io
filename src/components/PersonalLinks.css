@@ -68,7 +68,7 @@
     text-align: center;
     border-radius: 0;
     box-shadow: none;
-    background: #ffffffcc; /* Slightly opaque background */
+    background: #fffc; /* Slightly opaque background */
   }
 
   /* Flexbox layout for list items */
