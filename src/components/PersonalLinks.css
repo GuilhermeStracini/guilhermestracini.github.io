@@ -13,7 +13,7 @@
   z-index: 10; /* Ensures the links are above other content */
 }
 
-/* Personal Links - Fixed positioning and styling */
+/* Heading style for personal links */
 .personal-links h2 {
   font-size: 1.8rem;
   color: #ffdd57;
