@@ -56,7 +56,7 @@
   color: #ffdd57;
 }
 
-/* Responsive Design */
+/* Responsive Design for screens smaller than 768px */
 @media (max-width: 768px) {
   .personal-links {
     position: relative; /* Change to relative for small screens */
@@ -70,6 +70,7 @@
     background: #ffffffcc; /* Slightly opaque background */
   }
 
+  /* Flexbox layout for list items */
   .personal-links ul {
     display: flex;
     flex-wrap: wrap;
@@ -91,6 +92,7 @@
   }
 }
 
+/* Responsive Design for screens smaller than 480px */
 @media (max-width: 480px) {
   .personal-links {
     width: 100%;
