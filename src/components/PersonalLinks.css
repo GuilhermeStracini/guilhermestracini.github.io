@@ -1,4 +1,4 @@
-/* Personal Links */
+/* Personal Links - Fixed positioning and styling */
 .personal-links {
   position: fixed;
   left: 20px;
@@ -13,6 +13,7 @@
   z-index: 10; /* Ensures the links are above other content */
 }
 
+/* Personal Links - Fixed positioning and styling */
 .personal-links h2 {
   font-size: 1.8rem;
   color: #ffdd57;
@@ -39,6 +40,10 @@
   transition: background-color 0.2s, color 0.2s;
   display: flex;
   align-items: center;
+}
+
+.personal-links a:focus-visible {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #1abc9c;
 }
 
 .personal-links a:hover {
