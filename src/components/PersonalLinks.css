@@ -10,7 +10,7 @@
   border-radius: 10px;
   color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 10;
+  z-index: 10; /* Ensures the links are above other content */
 }
 
 /* Heading style for personal links */
@@ -60,13 +60,15 @@
 /* Responsive Design for screens smaller than 768px */
 @media (max-width: 768px) {
   .personal-links {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
+    position: relative; /* Change to relative for small screens */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full-width for smaller screens */
     padding: 15px;
     text-align: center;
+    border-radius: 0;
+    box-shadow: none;
+    background: #fffc; /* Slightly opaque background */
   }
 
   /* Flexbox layout for list items */
@@ -97,9 +99,6 @@
     width: 100%;
     padding: 10px;
     border-radius: 0;
-    bottom: 0;
-    left: 0;
-    transform: none;
   }
 
   .personal-links ul {
