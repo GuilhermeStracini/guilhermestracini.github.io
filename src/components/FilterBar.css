@@ -86,7 +86,8 @@
   }
 
   .filter-bar {
-    gap: 0.5rem; /* Reduce spacing */
+    gap: 2rem; /* Reduce spacing */
+    padding: 2rem;
   }
 
   .filter-icons,
