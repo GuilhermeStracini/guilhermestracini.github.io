@@ -1,3 +1,4 @@
+/* Global Styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -14,6 +15,7 @@ h1 {
 ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 li {
@@ -23,8 +25,10 @@ li {
   border: 1px solid #ddd;
   border-radius: 5px;
   max-width: 600px;
+  width: 90%; /* Ensures it is responsive */
 }
 
+/* Links Styles */
 a {
   text-decoration: none;
   color: #0366d6;
@@ -32,4 +36,32 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For screens smaller than 768px */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  li {
+    padding: 10px;
+    margin: 10px;
+    width: 95%; /* Reduce padding and margin for smaller screens */
+  }
+}
+
+/* For screens smaller than 480px */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  li {
+    padding: 8px;
+    margin: 5px;
+    width: 100%; /* Full width on very small screens */
+  }
 }
