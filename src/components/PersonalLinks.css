@@ -105,6 +105,10 @@
     flex-direction: column;
   }
 
+  .personal-links ul li {
+    width: 90%;
+  }
+
   .personal-links a {
     font-size: 0.9rem;
     padding: 6px 10px;
