@@ -96,7 +96,7 @@
 /* Responsive Design for screens smaller than 480px */
 @media (max-width: 480px) {
   .personal-links {
-    width: 100%;
+    width: calc(100% - 24px);
     padding: 10px;
     border-radius: 0;
   }
