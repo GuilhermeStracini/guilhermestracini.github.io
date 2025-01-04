@@ -1,5 +1,5 @@
 footer {
-  width: 100%;
+  width: calc(100% - 80px);
   background-color: #1f4037;
   color: white;
   padding: 20px 40px;
