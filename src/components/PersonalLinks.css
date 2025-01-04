@@ -27,6 +27,7 @@
 
 .personal-links li {
   margin: 10px 0;
+  width: calc(100% - 30px);
 }
 
 .personal-links a {
