@@ -1,35 +1,70 @@
 footer {
-    width: 100%;
-    background-color: #1f4037;
-    color: white;
-    padding: 20px 40px;
-    text-align: center;
-    font-size: 1rem;
-    position: relative;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
+  width: 100%;
+  background-color: #1f4037;
+  color: white;
+  padding: 20px 40px;
+  text-align: center;
+  font-size: 1rem;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping for responsiveness */
+  gap: 10px;
+}
+
+footer a {
+  color: #ffdd57;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer a:hover {
+  color: #1abc9c;
+}
+
+footer img {
+  border-radius: 50%;
+  margin-right: 10px;
+  width: 40px; /* Set a fixed width for better responsiveness */
+  height: 40px;
+}
+
+footer svg {
+  margin-left: 10px;
+}
+
+/* Small Screen Adjustments */
+@media (max-width: 768px) {
+  footer {
+    padding: 15px 20px; /* Reduce padding for smaller screens */
+    flex-direction: column; /* Stack content vertically */
+    gap: 15px; /* Increase gap between elements */
   }
-  
-  footer a {
-    color: #ffdd57;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  footer a:hover {
-    color: #1abc9c;
-  }
-  
+
   footer img {
-    border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 0; /* Center align on small screens */
   }
-  
-  footer svg {
-    margin-left: 10px;
+
+  footer a {
+    font-size: 0.9rem; /* Slightly smaller font size for links */
   }
+}
+
+/* Very Small Screens Adjustments */
+@media (max-width: 480px) {
+  footer {
+    padding: 10px; /* Compact padding */
+  }
+
+  footer a {
+    font-size: 0.8rem; /* Adjust link font size */
+  }
+
+  footer img {
+    width: 30px; /* Smaller image size */
+    height: 30px;
+  }
+}
