@@ -59,6 +59,7 @@
 .repo-card .repo-details {
   display: flex;
   align-items: center;
+  flex-wrap: wrap; /* Ensures items wrap on smaller screens */
   gap: 10px;
   margin-bottom: 10px;
 }
@@ -93,4 +94,61 @@
   margin-top: 10px;
   margin-right: 10px;
   display: inline-block;
+}
+
+/* Small Screen Adjustments */
+@media (max-width: 768px) {
+  .repo-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Smaller card width */
+    gap: 15px; /* Reduce gap between cards */
+  }
+
+  .repo-card {
+    padding: 15px; /* Smaller padding for compact layout */
+  }
+
+  .repo-card h2 {
+    font-size: 1.3rem; /* Slightly smaller title size */
+  }
+
+  .repo-card p {
+    font-size: 0.9rem; /* Adjust paragraph font size */
+    margin: 10px 0;
+  }
+
+  .repo-card .repo-details {
+    gap: 5px; /* Reduce gap in details section */
+  }
+
+  .repo-card .repo-details .template-badge {
+    font-size: 0.8rem; /* Adjust badge size */
+    padding: 3px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .repo-grid {
+    grid-template-columns: 1fr; /* Single-column layout for very small screens */
+  }
+
+  .repo-card {
+    padding: 10px;
+  }
+
+  .repo-card h2 {
+    font-size: 1.2rem;
+  }
+
+  .repo-card p {
+    font-size: 0.85rem;
+  }
+
+  .repo-card .repo-details {
+    gap: 3px;
+  }
+
+  .repo-card .repo-details .template-badge {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+  }
 }
