@@ -25,7 +25,7 @@ li {
   border: 1px solid #ddd;
   border-radius: 5px;
   max-width: 600px;
-  width: 90%; /* Ensures it is responsive */
+  width: 100%; /* Ensures it is responsive while preventing layout jumps */
 }
 
 /* Links Styles */
