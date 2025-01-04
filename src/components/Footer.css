@@ -57,6 +57,7 @@ footer svg {
 @media (max-width: 480px) {
   footer {
     padding: 10px; /* Compact padding */
+    width: calc(100% - 20px);
   }
 
   footer a {
