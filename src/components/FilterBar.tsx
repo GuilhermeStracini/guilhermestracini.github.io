@@ -32,6 +32,23 @@ interface FilterBarProps {
   onSortChange: (sortField: string, sortOrder: string) => void;
 }
 
+/**
+ * A functional component that renders a filter and sort bar for repositories.
+ * It allows users to apply filters and sort the displayed items based on different criteria.
+ *
+ * @component
+ * @param {Object} props - The properties for the FilterBar component.
+ * @param {function} props.onFilterChange - Callback function that is called when the filter changes.
+ * @param {function} props.onSortChange - Callback function that is called when the sort field or order changes.
+ *
+ * @example
+ * <FilterBar
+ *   onFilterChange={(filter) => console.log(filter)}
+ *   onSortChange={(field, order) => console.log(field, order)}
+ * />
+ *
+ * @throws {Error} Throws an error if the filter or sort change callbacks are not provided.
+ */
 const FilterBar: React.FC<FilterBarProps> = ({
   onFilterChange,
   onSortChange,
