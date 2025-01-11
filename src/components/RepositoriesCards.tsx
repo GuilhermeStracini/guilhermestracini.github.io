@@ -7,6 +7,24 @@ import {
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
 import "./RepositoriesCards.css";
+/**
+ * Formats a given ISO date string into a localized date and time string.
+ *
+ * This function takes an ISO date string as input and returns a formatted string
+ * representing the date and time in the "pt-BR" (Portuguese - Brazil) locale.
+ * If the input date is invalid, it returns "Unknown date".
+ *
+ * @param {string} isoDate - The ISO date string to be formatted.
+ * @returns {string} The formatted date and time string, or "Unknown date" if the input is invalid.
+ *
+ * @example
+ * // Returns "10/10/2023 14:30"
+ * formatDate("2023-10-10T14:30:00Z");
+ *
+ * @example
+ * // Returns "Unknown date"
+ * formatDate("invalid-date-string");
+ */
 const formatDate = (isoDate: string): string => {
   const date = new Date(isoDate);
   if (Number.isNaN(date.valueOf())) {
@@ -21,6 +39,37 @@ const formatDate = (isoDate: string): string => {
   }).format(date);
 };
 
+/**
+ * A functional component that renders a grid of repository cards.
+ * Each card displays information about a repository, including its name,
+ * star count, template status, description, last updated date, and a link
+ * to the repository.
+ *
+ * @component
+ * @param {RepositoriesCardsProps} props - The properties for the component.
+ * @param {Array<Repository>} props.repos - An array of repository objects
+ * containing details to be displayed in the cards.
+ *
+ * @returns {JSX.Element} A JSX element representing the repository cards grid.
+ *
+ * @example
+ * const repositories = [
+ *   {
+ *     id: 1,
+ *     name: "Repo 1",
+ *     stargazers_count: 10,
+ *     is_template: false,
+ *     description: "This is a sample repository.",
+ *     updated_at: "2023-01-01T00:00:00Z",
+ *     html_url: "https://github.com/user/repo1"
+ *   },
+ *   // ... more repositories
+ * ];
+ *
+ * <RepositoriesCards repos={repositories} />
+ *
+ * @throws {Error} Throws an error if the repos prop is not an array.
+ */
 const RepositoriesCards: React.FC<RepositoriesCardsProps> = ({ repos }) => {
   return (
     <div className="repo-grid">
