@@ -1,5 +1,30 @@
 import "./Footer.css";
 
+/**
+ * Footer component that displays developer information and links.
+ *
+ * This component renders a footer section containing the developer's name,
+ * a link to their portfolio, and a link to the project's GitHub repository.
+ * It includes an image of the developer and utilizes external links with
+ * appropriate attributes for security and accessibility.
+ *
+ * @returns {JSX.Element} The rendered footer component.
+ *
+ * @example
+ * // Usage in a React application
+ * import Footer from './Footer';
+ *
+ * function App() {
+ *   return (
+ *     <div>
+ *       <h1>Welcome to My App</h1>
+ *       <Footer />
+ *     </div>
+ *   );
+ * }
+ *
+ * @throws {Error} Throws an error if the component fails to render properly.
+ */
 const Footer: React.FC = () => {
   return (
     <footer>
