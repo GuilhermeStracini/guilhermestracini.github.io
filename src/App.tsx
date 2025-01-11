@@ -7,6 +7,17 @@ import Footer from "./components/Footer";
 import FilterBar from "./components/FilterBar";
 import "./App.css";
 
+/**
+ * Main application component that fetches and displays GitHub repositories.
+ * It provides functionalities for searching, filtering, and sorting the repositories.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered application component.
+ *
+ * @example
+ * // Usage in a React application
+ * <App />
+ */
 const App: React.FC = () => {
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
   const [repoCount, setRepoCount] = useState<number>(0);
@@ -98,16 +109,63 @@ const App: React.FC = () => {
     setFilteredCount(filterAndSortRepos().length);
   }, [repos, activeFilter, sortField, sortOrder, filterAndSortRepos]);
 
+  /**
+   * Handles the change event for a search input field.
+   * This function updates the search query state with the current value of the input.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} event - The change event triggered by the input field.
+   * @returns {void} This function does not return a value.
+   *
+   * @example
+   * // Example usage in a React component
+   * <input type="text" onChange={handleSearchChange} />
+   *
+   * @throws {Error} Throws an error if the event is not a valid change event.
+   */
   const handleSearchChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
     setSearchQuery(event.target.value);
   };
 
+  /**
+   * Handles the change of a filter by updating the active filter state.
+   *
+   * This function is typically used in scenarios where a user selects a new filter option,
+   * and it updates the application state accordingly.
+   *
+   * @param {string} filter - The new filter value to set as active.
+   * @returns {void} This function does not return a value.
+   *
+   * @example
+   * // Example usage:
+   * handleFilterChange('newFilterValue');
+   *
+   * @throws {Error} Throws an error if the filter is not a valid string.
+   */
   const handleFilterChange = (filter: string): void => {
     setActiveFilter(filter);
   };
 
+  /**
+   * Handles the change in sorting parameters by updating the sort field and order.
+   *
+   * This function is typically used in scenarios where a user selects a different sorting option
+   * in a user interface, allowing the application to respond accordingly by setting the new sort criteria.
+   *
+   * @param {string} field - The field by which to sort the data. This should correspond to a valid
+   *                         property of the data being sorted.
+   * @param {string} order - The order in which to sort the data. This can be either 'asc' for ascending
+   *                         order or 'desc' for descending order.
+   *
+   * @returns {void} This function does not return a value.
+   *
+   * @throws {Error} Throws an error if the provided field is invalid or if the order is not 'asc' or 'desc'.
+   *
+   * @example
+   * // Example usage of handleSortChange
+   * handleSortChange('name', 'asc');
+   */
   const handleSortChange = (field: string, order: string): void => {
     setSortField(field);
     setSortOrder(order);
