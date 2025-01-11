@@ -7,6 +7,18 @@ import Footer from "./components/Footer";
 import FilterBar from "./components/FilterBar";
 import "./App.css";
 
+/**
+ * The main application component that fetches and displays GitHub repositories.
+ * It manages the state for repositories, loading status, error messages, and user input for filtering and sorting.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered application component.
+ *
+ * @example
+ * <App />
+ *
+ * @throws {Error} Throws an error if the repository data fails to load.
+ */
 const App: React.FC = () => {
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
   const [repoCount, setRepoCount] = useState<number>(0);
@@ -98,6 +110,19 @@ const App: React.FC = () => {
     setFilteredCount(filterAndSortRepos().length);
   }, [repos, activeFilter, sortField, sortOrder, filterAndSortRepos]);
 
+  /**
+   * Handles the change event for a search input field.
+   * This function updates the search query state based on the user's input.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} event - The change event triggered by the input field.
+   * @returns {void} This function does not return a value.
+   *
+   * @example
+   * // Example usage within a React component:
+   * <input type="text" onChange={handleSearchChange} />
+   *
+   * @throws {Error} Throws an error if the event is not a valid change event.
+   */
   const handleSearchChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
