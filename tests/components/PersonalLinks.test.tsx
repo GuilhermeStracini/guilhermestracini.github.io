@@ -20,10 +20,11 @@ describe("PersonalLinks component", () => {
 
     // Verify GitHub links
     const githubLinks = screen.getAllByRole("link", { name: /GitHub/i });
-    expect(githubLinks).toHaveLength(2);
+    expect(githubLinks).toHaveLength(3);
 
-    expect(githubLinks[0]).toHaveAttribute("href", "https://github.com/guibranco");
-    expect(githubLinks[1]).toHaveAttribute("href", "https://github.com/GuilhermeStracini");
+    expect(githubLinks[0]).toHaveAttribute("href", "https://bot.straccini.com");
+    expect(githubLinks[1]).toHaveAttribute("href", "https://github.com/guibranco");
+    expect(githubLinks[2]).toHaveAttribute("href", "https://github.com/GuilhermeStracini");
 
     // Verify LinkedIn link
     const linkedInLink = screen.getByRole("link", { name: /LinkedIn/i });
