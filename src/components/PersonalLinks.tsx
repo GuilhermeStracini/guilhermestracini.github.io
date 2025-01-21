@@ -13,6 +13,7 @@ import "./PersonalLinks.css";
 const links = [
   { name: "Portfolio", url: "https://guilhermebranco.com.br", icon: faGlobe },
   { name: "Old Portfolio", url: "https://zerocool.com.br", icon: faGlobe }, 
+  { name: "GitHub Bot", url: "https://bot.straccini.com", icon: faGithub },
   { name: "Personal Blog", url: "https://blog.guilhermebranco.com.br", icon: faWordpress },
   { name: "Main GitHub", url: "https://github.com/guibranco", icon: faGithub },
   { name: "POCs GitHub", url: "https://github.com/GuilhermeStracini", icon: faGithub },
