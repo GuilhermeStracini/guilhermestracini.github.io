@@ -5,7 +5,7 @@ const Footer: React.FC = () => {
     <footer>
       Developed by{" "}
       <a
-        href="https://guibranco.github.io?utm_campaign=project&utm_media=guilhermestracini+portfolio&utm_source=guilhermestracini.github.io"
+        href="https://guilherme.stracini.com.br/?utm_campaign=project&utm_media=guilhermestracini+portfolio&utm_source=guilhermestracini.github.io"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
         />
       </a>{" "}
       <a
-        href="https://guibranco.github.io/?utm_campaign=project&utm_media=guilhermestracini+portfolio&utm_source=guilhermestracini.github.io"
+        href="https://guilherme.stracini.com.br/?utm_campaign=project&utm_media=guilhermestracini+portfolio&utm_source=guilhermestracini.github.io"
         target="_blank"
         rel="noopener noreferrer"
       >
