@@ -15,13 +15,13 @@ describe("Footer component", () => {
     // Check the first link
     expect(developerLinks[0]).toHaveAttribute(
       "href",
-      "https://guibranco.github.io?utm_campaign=project&utm_media=guilhermestracini+portfolio&utm_source=guilhermestracini.github.io"
+      "https://guilherme.stracini.com.br/?utm_campaign=project&utm_media=guilhermestracini+portfolio&utm_source=guilhermestracini.github.io"
     );
 
     // Check the second link
     expect(developerLinks[1]).toHaveAttribute(
       "href",
-      "https://guibranco.github.io/?utm_campaign=project&utm_media=guilhermestracini+portfolio&utm_source=guilhermestracini.github.io"
+      "https://guilherme.stracini.com.br/?utm_campaign=project&utm_media=guilhermestracini+portfolio&utm_source=guilhermestracini.github.io"
     );
 
     // Verify the GitHub links
