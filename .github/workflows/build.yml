@@ -7,15 +7,13 @@ on:
   pull_request:
   workflow_dispatch:
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+permissions:
+  contents: read
 
 jobs:
   build:
     name: Build and Test
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -34,7 +32,7 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Test
+      - name: Test & Coverage
         run: npm run test:coverage
 
       - name: Submit coverage to Qlty.sh
