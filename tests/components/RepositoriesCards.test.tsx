@@ -38,7 +38,7 @@ describe("RepositoriesCards component", () => {
 
   it("renders repository details correctly", () => {
     render(<RepositoriesCards repos={mockRepos} />);
-  
+
     // Verify the first repository details
     const repoOne = screen.getByText("Repository One");
     expect(repoOne).toBeInTheDocument();
@@ -46,24 +46,31 @@ describe("RepositoriesCards component", () => {
     expect(repoOneStars).toBeInTheDocument();
     const repoOneDescription = screen.getByText("A sample repository");
     expect(repoOneDescription).toBeInTheDocument();
-  
+
     // Verify all links and their URLs
     const links = screen.getAllByRole("link", { name: /view repository/i });
     expect(links).toHaveLength(2);
-    expect(links[0]).toHaveAttribute("href", "https://github.com/user/repository-one");
-    expect(links[1]).toHaveAttribute("href", "https://github.com/user/template-repo");
-  
+    expect(links[0]).toHaveAttribute(
+      "href",
+      "https://github.com/user/repository-one",
+    );
+    expect(links[1]).toHaveAttribute(
+      "href",
+      "https://github.com/user/template-repo",
+    );
+
     // Verify the second repository details
     const templateRepo = screen.getByText("Template Repo");
     expect(templateRepo).toBeInTheDocument();
     const templateRepoStars = screen.getByText("10");
     expect(templateRepoStars).toBeInTheDocument();
-    const templateRepoDescription = screen.getByText("No description provided.");
+    const templateRepoDescription = screen.getByText(
+      "No description provided.",
+    );
     expect(templateRepoDescription).toBeInTheDocument();
     const templateBadge = screen.getByText("Template");
     expect(templateBadge).toBeInTheDocument();
   });
-  
 
   it("renders a default message when description is missing", () => {
     render(<RepositoriesCards repos={mockRepos} />);
