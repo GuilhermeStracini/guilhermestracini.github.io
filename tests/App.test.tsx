@@ -72,7 +72,7 @@ describe("App component", () => {
     render(<App />);
     await waitFor(() => {
       expect(
-        screen.getByText(/failed to load repositories/i)
+        screen.getByText(/failed to load repositories/i),
       ).toBeInTheDocument();
     });
   });

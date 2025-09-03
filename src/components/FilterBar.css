@@ -16,7 +16,9 @@
   font-size: 1.5rem;
   cursor: pointer;
   color: #f8f9fa; /* Light for green background */
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
   outline: none;
 }
 
@@ -42,7 +44,9 @@
   font-size: 1.5rem;
   cursor: pointer;
   color: #f8f9fa; /* Light for contrast */
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
   outline: none;
 }
 
