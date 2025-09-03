@@ -91,7 +91,7 @@ const App: React.FC = () => {
 
   const filteredRepos = useMemo(
     () => filterAndSortRepos(),
-    [filterAndSortRepos]
+    [filterAndSortRepos],
   );
 
   useEffect(() => {
@@ -99,7 +99,7 @@ const App: React.FC = () => {
   }, [repos, activeFilter, sortField, sortOrder, filterAndSortRepos]);
 
   const handleSearchChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ): void => {
     setSearchQuery(event.target.value);
   };
