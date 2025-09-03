@@ -1,4 +1,3 @@
-
 # Guilherme Stracini GitHub Pages
 
 Welcome to the GitHub Pages site for the **Guilherme Stracini** organization! This page serves as a portfolio and showcase for my various projects, experiments, and "Hello World" repositories.
@@ -37,29 +36,33 @@ Before you begin, ensure you have the following installed:
 To set up the project locally, follow these steps:
 
 1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/GuilhermeStracini/guilhermestracini.github.io.git
-    cd guilhermestracini.github.io
-    ```
+
+   ```bash
+   git clone https://github.com/GuilhermeStracini/guilhermestracini.github.io.git
+   cd guilhermestracini.github.io
+   ```
 
 2. **Install dependencies**:
-    ```bash
-    npm install
-    ```
+
+   ```bash
+   npm install
+   ```
 
 3. **Run the development server**:
-    ```bash
-    npm run dev
-    ```
 
-    This will start the Vite development server. Open [http://localhost:5173](http://localhost:5173) in your browser to view the project.
+   ```bash
+   npm run dev
+   ```
+
+   This will start the Vite development server. Open [http://localhost:5173](http://localhost:5173) in your browser to view the project.
 
 4. **Building the project for production**:
-    ```bash
-    npm run build
-    ```
 
-    This will create an optimized production build in the `dist/` directory.
+   ```bash
+   npm run build
+   ```
+
+   This will create an optimized production build in the `dist/` directory.
 
 ---
 
