@@ -19,16 +19,16 @@
     "@fortawesome/react-fontawesome": "^3.0.2",
     "axios": "^1.12.2",
     "react": "^19.0.0",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
     "@types/jest": "^30.0.0",
-    "@types/node": "^24.5.2",
+    "@types/node": "^24.7.0",
     "@types/react": "^19.1.15",
-    "@types/react-dom": "^19.1.9",
+    "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react-swc": "^4.1.0",
     "@vitest/coverage-v8": "^3.2.4",
     "eslint": "^9.36.0",
