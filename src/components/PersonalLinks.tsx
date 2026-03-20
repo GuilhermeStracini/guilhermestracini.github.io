@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGlobe } from "@fortawesome/free-solid-svg-icons";
+import { faGlobe, faBlog } from "@fortawesome/free-solid-svg-icons";
 import {
   faGithub,
   faInstagram,
@@ -13,9 +13,14 @@ const links = [
   { name: "Old Portfolio", url: "https://zerocool.com.br", icon: faGlobe },
   { name: "GitHub Bot", url: "https://bot.straccini.com", icon: faGithub },
   {
-    name: "Personal Blog",
+    name: "Personal Blog (WordPress)",
     url: "https://blog.guilhermebranco.com.br",
     icon: faWordpress,
+  },
+  {
+    name: "Tech & Travel Blog",
+    url: "https://guilherme.stracini.com.br/blog",
+    icon: faBlog,
   },
   { name: "Main GitHub", url: "https://github.com/guibranco", icon: faGithub },
   {
