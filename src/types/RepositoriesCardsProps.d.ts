@@ -1,3 +1,4 @@
 export interface RepositoriesCardsProps {
-  repos: Repo[];
-}
+    repos: Repo[];
+  }
+  

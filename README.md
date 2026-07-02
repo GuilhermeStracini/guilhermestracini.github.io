@@ -1,10 +1,11 @@
+
 # Guilherme Stracini GitHub Pages
 
 Welcome to the GitHub Pages site for the **Guilherme Stracini** organization! This page serves as a portfolio and showcase for my various projects, experiments, and "Hello World" repositories.
 
 [![wakatime](https://wakatime.com/badge/github/GuilhermeStracini/guilhermestracini.github.io.svg)](https://wakatime.com/badge/github/GuilhermeStracini/guilhermestracini.github.io)
-[![Maintainability](https://qlty.sh/gh/GuilhermeStracini/projects/apiclient-boilerplate-dotnet/maintainability.svg)](https://qlty.sh/gh/GuilhermeStracini/projects/apiclient-boilerplate-dotnet)
-[![Code Coverage](https://qlty.sh/gh/GuilhermeStracini/projects/apiclient-boilerplate-dotnet/coverage.svg)](https://qlty.sh/gh/GuilhermeStracini/projects/apiclient-boilerplate-dotnet)
+[![Maintainability](https://api.codeclimate.com/v1/badges/921da57d388d4cb4028f/maintainability)](https://codeclimate.com/github/GuilhermeStracini/guilhermestracini.github.io/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/921da57d388d4cb4028f/test_coverage)](https://codeclimate.com/github/GuilhermeStracini/guilhermestracini.github.io/test_coverage)
 [![CodeFactor](https://www.codefactor.io/repository/github/GuilhermeStracini/guilhermestracini.github.io/badge)](https://www.codefactor.io/repository/github/GuilhermeStracini/guilhermestracini.github.io)
 [![GitHub license](https://img.shields.io/github/license/GuilhermeStracini/guilhermestracini.github.io)](https://github.com/GuilhermeStracini/guilhermestracini.github.io)
 [![GitHub last commit](https://img.shields.io/github/last-commit/GuilhermeStracini/guilhermestracini.github.io)](https://github.com/GuilhermeStracini/guilhermestracini.github.io)
@@ -36,33 +37,29 @@ Before you begin, ensure you have the following installed:
 To set up the project locally, follow these steps:
 
 1. **Clone the repository**:
-
-   ```bash
-   git clone https://github.com/GuilhermeStracini/guilhermestracini.github.io.git
-   cd guilhermestracini.github.io
-   ```
+    ```bash
+    git clone https://github.com/GuilhermeStracini/guilhermestracini.github.io.git
+    cd guilhermestracini.github.io
+    ```
 
 2. **Install dependencies**:
-
-   ```bash
-   npm install
-   ```
+    ```bash
+    npm install
+    ```
 
 3. **Run the development server**:
+    ```bash
+    npm run dev
+    ```
 
-   ```bash
-   npm run dev
-   ```
-
-   This will start the Vite development server. Open [http://localhost:5173](http://localhost:5173) in your browser to view the project.
+    This will start the Vite development server. Open [http://localhost:5173](http://localhost:5173) in your browser to view the project.
 
 4. **Building the project for production**:
+    ```bash
+    npm run build
+    ```
 
-   ```bash
-   npm run build
-   ```
-
-   This will create an optimized production build in the `dist/` directory.
+    This will create an optimized production build in the `dist/` directory.
 
 ---
 
