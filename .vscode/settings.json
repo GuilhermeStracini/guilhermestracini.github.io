@@ -2,5 +2,6 @@
     "sonarlint.connectedMode.project": {
         "connectionId": "guilhermestracini",
         "projectKey": "GuilhermeStracini_guilhermestracini.github.io"
-    }
+    },
+    "snyk.advanced.autoSelectOrganization": true
 }

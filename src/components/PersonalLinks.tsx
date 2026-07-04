@@ -42,18 +42,24 @@ const links = [
 
 const PersonalLinks: React.FC = () => {
   return (
-    <div className="personal-links">
-      <h2>Connect with Me</h2>
+    <nav className="personal-links" aria-label="Connect with me">
+      <h2 className="sr-only">Connect with Me</h2>
       <ul>
         {links.map((link) => (
           <li key={link.url}>
-            <a href={link.url} target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={link.icon} className="icon" /> {link.name}
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={link.name}
+            >
+              <FontAwesomeIcon icon={link.icon} className="icon" />
+              <span className="sr-only">{link.name}</span>
             </a>
           </li>
         ))}
       </ul>
-    </div>
+    </nav>
   );
 };
 

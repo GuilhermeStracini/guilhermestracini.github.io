@@ -2,101 +2,82 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
-  flex-wrap: wrap; /* Allow wrapping for smaller screens */
-  gap: 1rem; /* Add gap for spacing when wrapping */
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  width: 100%;
 }
 
-.filter-icons {
-  display: flex;
-  gap: 1rem;
-}
-
-.filter-icon {
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #f8f9fa; /* Light for green background */
-  transition:
-    color 0.2s ease,
-    transform 0.2s ease;
-  outline: none;
-}
-
-.filter-icon:focus-visible {
-  outline: 2px solid #ffc107;
-  outline-offset: 2px;
-}
-
-.filter-icon.active,
-.filter-icon:hover {
-  color: #ffc107; /* Yellow for active state */
-  transform: scale(1.1); /* Slight zoom effect */
-}
-
+.filter-icons,
 .sort-controls {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
-.sort-icon,
-.sort-order-toggle {
-  font-size: 1.5rem;
+.pill-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  background: rgb(255 255 255 / 5%);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.4rem 0.85rem;
   cursor: pointer;
-  color: #f8f9fa; /* Light for contrast */
   transition:
-    color 0.2s ease,
-    transform 0.2s ease;
-  outline: none;
+    color var(--transition-fast),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
 }
 
-.sort-icon:focus-visible,
-.sort-order-toggle:focus-visible {
-  outline: 2px solid #ffc107;
+.pill-button svg {
+  font-size: 0.95rem;
+}
+
+.pill-button:hover {
+  color: var(--color-text);
+  border-color: var(--color-border-strong);
+  transform: translateY(-1px);
+}
+
+.pill-button:focus-visible {
+  outline: 2px solid var(--color-accent-gold);
   outline-offset: 2px;
 }
 
-.sort-icon.active,
-.sort-icon:hover,
-.sort-order-toggle:hover {
-  color: #ffc107; /* Yellow for hover/active states */
-  transform: scale(1.1); /* Slight zoom effect */
+.pill-button.active {
+  color: #06231c;
+  background: var(--color-accent-gold);
+  border-color: var(--color-accent-gold);
 }
 
 /* Small Screen Adjustments */
 @media (max-width: 768px) {
   .filter-bar {
-    flex-direction: column; /* Stack elements vertically */
-    align-items: flex-start; /* Align items to the left */
-  }
-
-  .filter-icons {
-    justify-content: center; /* Center icons */
-    width: 100%; /* Take full width */
-  }
-
-  .sort-controls {
-    justify-content: center; /* Center sort controls */
-    width: 100%; /* Take full width */
-  }
-}
-
-/* Very Small Screens Adjustments */
-@media (max-width: 480px) {
-  .filter-icon,
-  .sort-icon,
-  .sort-order-toggle {
-    font-size: 1.2rem; /* Reduce icon size */
-  }
-
-  .filter-bar {
-    gap: 2rem; /* Reduce spacing */
-    padding: 2rem;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .filter-icons,
   .sort-controls {
-    flex-wrap: wrap; /* Allow wrapping for very small screens */
-    justify-content: space-between; /* Adjust spacing dynamically */
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .pill-button span {
+    display: none;
+  }
+
+  .pill-button {
+    padding: 0.5rem;
+  }
+
+  .pill-button svg {
+    font-size: 1.1rem;
   }
 }
