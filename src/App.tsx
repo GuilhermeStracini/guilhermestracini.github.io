@@ -12,7 +12,6 @@ import "./App.css";
 const App: React.FC = () => {
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
   const [repoCount, setRepoCount] = useState<number>(0);
-  const [filteredCount, setFilteredCount] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -96,9 +95,7 @@ const App: React.FC = () => {
     [filterAndSortRepos],
   );
 
-  useEffect(() => {
-    setFilteredCount(filterAndSortRepos().length);
-  }, [repos, activeFilter, sortField, sortOrder, filterAndSortRepos]);
+  const filteredCount = filteredRepos.length;
 
   const handleSearchChange = (
     event: React.ChangeEvent<HTMLInputElement>,
