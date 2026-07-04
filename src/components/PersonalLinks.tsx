@@ -4,7 +4,6 @@ import {
   faGithub,
   faInstagram,
   faLinkedin,
-  faWordpress,
 } from "@fortawesome/free-brands-svg-icons";
 import "./PersonalLinks.css";
 
