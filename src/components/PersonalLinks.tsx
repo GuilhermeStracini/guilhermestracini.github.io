@@ -13,11 +13,6 @@ const links = [
   { name: "Old Portfolio", url: "https://zerocool.com.br", icon: faGlobe },
   { name: "GitHub Bot", url: "https://bot.straccini.com", icon: faGithub },
   {
-    name: "Personal Blog (WordPress)",
-    url: "https://blog.guilhermebranco.com.br",
-    icon: faWordpress,
-  },
-  {
     name: "Tech & Travel Blog",
     url: "https://guilherme.stracini.com.br/blog",
     icon: faBlog,
