@@ -39,7 +39,6 @@ const FilterBar: React.FC<FilterBarProps> = ({
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [sortField, setSortField] = useState<string>("name");
   const [sortOrder, setSortOrder] = useState<string>("asc");
-  const [faSortAlpha, setFaSortAlpha] = useState(faSortAlphaAsc);
 
   const handleFilterClick = (filter: string): void => {
     setActiveFilter(filter === activeFilter ? null : filter);
@@ -55,7 +54,6 @@ const FilterBar: React.FC<FilterBarProps> = ({
     const newOrder = sortOrder === "asc" ? "desc" : "asc";
     setSortOrder(newOrder);
     onSortChange(sortField, newOrder);
-    setFaSortAlpha(newOrder === "asc" ? faSortAlphaAsc : faSortAlphaDesc);
   };
 
   return (
@@ -66,16 +64,16 @@ const FilterBar: React.FC<FilterBarProps> = ({
         aria-label="Repository filters"
       >
         {FILTER_ICONS.map(({ icon, filter, title }) => (
-          <FontAwesomeIcon
+          <button
             key={filter}
-            icon={icon}
-            className={`filter-icon ${activeFilter === filter ? "active" : ""}`}
+            type="button"
+            className={`pill-button ${activeFilter === filter ? "active" : ""}`}
             onClick={() => handleFilterClick(filter)}
-            title={title}
-            tabIndex={0}
             aria-pressed={activeFilter === filter}
-            onKeyUp={(e) => e.key === "Enter" && handleFilterClick(filter)}
-          />
+          >
+            <FontAwesomeIcon icon={icon} title={title} />
+            <span>{title}</span>
+          </button>
         ))}
       </div>
 
@@ -84,52 +82,52 @@ const FilterBar: React.FC<FilterBarProps> = ({
         role="toolbar"
         aria-label="Repository sort controls"
       >
-        <FontAwesomeIcon
-          icon={faSortAlpha}
-          className={`sort-icon ${sortField === "name" ? "active" : ""}`}
+        <button
+          type="button"
+          className={`pill-button ${sortField === "name" ? "active" : ""}`}
           onClick={() => handleSortFieldClick("name")}
-          title="Sort by Name"
-          tabIndex={0}
-          role="button"
           aria-pressed={sortField === "name"}
-          onKeyUp={(e) => e.key === "Enter" && handleSortFieldClick("name")}
-        />
-        <FontAwesomeIcon
-          icon={faStar}
-          className={`sort-icon ${
+        >
+          <FontAwesomeIcon
+            icon={sortOrder === "asc" ? faSortAlphaAsc : faSortAlphaDesc}
+            title="Sort by Name"
+          />
+          <span>Sort by Name</span>
+        </button>
+        <button
+          type="button"
+          className={`pill-button ${
             sortField === "stargazers_count" ? "active" : ""
           }`}
           onClick={() => handleSortFieldClick("stargazers_count")}
-          title="Sort by Stargazers"
-          tabIndex={0}
-          role="button"
           aria-pressed={sortField === "stargazers_count"}
-          onKeyUp={(e) =>
-            e.key === "Enter" && handleSortFieldClick("stargazers_count")
-          }
-        />
-        <FontAwesomeIcon
-          icon={faClock}
-          className={`sort-icon ${sortField === "updated_at" ? "active" : ""}`}
+        >
+          <FontAwesomeIcon icon={faStar} title="Sort by Stargazers" />
+          <span>Sort by Stargazers</span>
+        </button>
+        <button
+          type="button"
+          className={`pill-button ${
+            sortField === "updated_at" ? "active" : ""
+          }`}
           onClick={() => handleSortFieldClick("updated_at")}
-          title="Sort by Recently Updated"
-          tabIndex={0}
-          role="button"
           aria-pressed={sortField === "updated_at"}
-          onKeyUp={(e) =>
-            e.key === "Enter" && handleSortFieldClick("updated_at")
-          }
-        />
-        <FontAwesomeIcon
-          icon={faSort}
-          className="sort-order-toggle"
+        >
+          <FontAwesomeIcon icon={faClock} title="Sort by Recently Updated" />
+          <span>Sort by Recently Updated</span>
+        </button>
+        <button
+          type="button"
+          className="pill-button sort-order-toggle"
           onClick={toggleSortOrder}
-          title={`Toggle Sort Order (${sortOrder.toUpperCase()})`}
-          tabIndex={0}
-          role="button"
           aria-pressed={sortOrder === "asc"}
-          onKeyUp={(e) => e.key === "Enter" && toggleSortOrder()}
-        />
+        >
+          <FontAwesomeIcon
+            icon={faSort}
+            title={`Toggle Sort Order (${sortOrder.toUpperCase()})`}
+          />
+          <span>{sortOrder === "asc" ? "Ascending" : "Descending"}</span>
+        </button>
       </div>
     </div>
   );

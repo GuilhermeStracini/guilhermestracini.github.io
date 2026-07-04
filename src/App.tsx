@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faFolderOpen } from "@fortawesome/free-solid-svg-icons";
 import { GitHubRepo } from "./types/GitHubRepo";
 import RepositoriesCards from "./components/RepositoriesCards";
 import PersonalLinks from "./components/PersonalLinks";
@@ -113,48 +115,97 @@ const App: React.FC = () => {
     setSortOrder(order);
   };
 
+  const hasActiveFilters = Boolean(activeFilter) || searchQuery.length > 0;
+
+  const [filterResetKey, setFilterResetKey] = useState(0);
+
+  const clearFilters = (): void => {
+    setActiveFilter(null);
+    setSearchQuery("");
+    setFilterResetKey((key) => key + 1);
+  };
+
   return (
     <div className="app">
+      <div className="top-bar">
+        <span className="brand">Guilherme Stracini</span>
+        <PersonalLinks />
+      </div>
+
       <header>
         <h1>GitHub Repositories</h1>
+        <p className="subtitle">
+          A showcase of POCs, hello-world projects, and templates.
+        </p>
         <div className="repo-count-badge">
           <span>
             {filteredCount} / {repoCount} Repositories
           </span>
         </div>
       </header>
-      <div className="search-bar-container">
-        <input
-          type="text"
-          placeholder="Search repositories..."
-          value={searchQuery}
-          onChange={handleSearchChange}
-          aria-label="Search repositories"
-          role="searchbox"
-          aria-describedby="search-description"
+
+      <div className="toolbar">
+        <div className="search-bar-container">
+          <FontAwesomeIcon icon={faSearch} className="search-icon" />
+          <input
+            type="text"
+            placeholder="Search repositories..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+            aria-label="Search repositories"
+            role="searchbox"
+            aria-describedby="search-description"
+          />
+          <span id="search-description" className="sr-only">
+            Search repositories by name or description
+          </span>
+        </div>
+        <FilterBar
+          key={filterResetKey}
+          onFilterChange={handleFilterChange}
+          onSortChange={handleSortChange}
         />
-        <span id="search-description" className="sr-only">
-          Search repositories by name or description
-        </span>
       </div>
-      <FilterBar
-        onFilterChange={handleFilterChange}
-        onSortChange={handleSortChange}
-      />
+
       <main>
         {loading ? (
-          <div className="loading">Loading...</div>
+          <>
+            <p className="loading">Loading repositories...</p>
+            <div className="repo-grid" aria-hidden="true">
+              {Array.from({ length: 8 }).map((_, index) => (
+                <div className="repo-card skeleton" key={index}>
+                  <div className="skeleton-line title" />
+                  <div className="skeleton-line text" />
+                  <div className="skeleton-line text short" />
+                  <div className="skeleton-line cta" />
+                </div>
+              ))}
+            </div>
+          </>
         ) : (
           <>
             {error ? (
               <div className="error">{error}</div>
+            ) : filteredCount === 0 ? (
+              <div className="empty-state">
+                <FontAwesomeIcon icon={faFolderOpen} className="empty-icon" />
+                <p>No repositories match your search or filters.</p>
+                {hasActiveFilters && (
+                  <button
+                    type="button"
+                    className="pill-button"
+                    onClick={clearFilters}
+                  >
+                    Clear filters
+                  </button>
+                )}
+              </div>
             ) : (
               <RepositoriesCards repos={filteredRepos} />
             )}
           </>
         )}
       </main>
-      <PersonalLinks />
       <Footer />
     </div>
   );
