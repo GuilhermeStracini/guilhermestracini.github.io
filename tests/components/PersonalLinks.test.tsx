@@ -18,7 +18,7 @@ describe("PersonalLinks component", () => {
     expect(portfolioLinks[1]).toHaveAttribute(
       "href",
       "https://zerocool.com.br",
-    );   
+    );
 
     // Verify GitHub links
     const githubLinks = screen.getAllByRole("link", { name: /GitHub/i });
