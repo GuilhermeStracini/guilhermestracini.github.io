@@ -28,7 +28,8 @@ const getCategory = (
 ): { label: string; className: string } => {
   const lowerName = name.toLowerCase();
   if (isTemplate) return { label: "Template", className: "cat-template" };
-  if (lowerName.startsWith("poc-")) return { label: "POC", className: "cat-poc" };
+  if (lowerName.startsWith("poc-"))
+    return { label: "POC", className: "cat-poc" };
   if (lowerName.startsWith("hello-world"))
     return { label: "Hello World", className: "cat-hello-world" };
   return { label: "Misc", className: "cat-misc" };
@@ -65,8 +66,8 @@ const RepositoriesCards: React.FC<RepositoriesCardsProps> = ({ repos }) => {
               Updated at: {formatDate(repo.updated_at)}
             </span>
             <span className="view-repo-cta">
-              <FontAwesomeIcon icon={faExternalLinkAlt} className="icon" />{" "}
-              View Repository
+              <FontAwesomeIcon icon={faExternalLinkAlt} className="icon" /> View
+              Repository
             </span>
           </a>
         );

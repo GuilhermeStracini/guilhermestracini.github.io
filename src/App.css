@@ -2,11 +2,8 @@
 body {
   margin: 0;
   padding: 0;
-  background: radial-gradient(
-      circle at top left,
-      rgb(255 221 87 / 6%),
-      transparent 40%
-    ),
+  background:
+    radial-gradient(circle at top left, rgb(255 221 87 / 6%), transparent 40%),
     linear-gradient(
       160deg,
       var(--color-bg-start) 0%,

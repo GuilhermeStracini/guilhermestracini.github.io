@@ -2,8 +2,7 @@
 
 /* Design tokens */
 :root {
-  --font-sans:
-    "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-sans: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
   --color-bg-start: #0f2419;
   --color-bg-mid: #1f4037;
