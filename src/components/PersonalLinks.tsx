@@ -4,7 +4,6 @@ import {
   faGithub,
   faInstagram,
   faLinkedin,
-  faWordpress,
 } from "@fortawesome/free-brands-svg-icons";
 import "./PersonalLinks.css";
 
@@ -12,11 +11,6 @@ const links = [
   { name: "Portfolio", url: "https://guilhermebranco.com.br", icon: faGlobe },
   { name: "Old Portfolio", url: "https://zerocool.com.br", icon: faGlobe },
   { name: "GitHub Bot", url: "https://bot.straccini.com", icon: faGithub },
-  {
-    name: "Personal Blog (WordPress)",
-    url: "https://blog.guilhermebranco.com.br",
-    icon: faWordpress,
-  },
   {
     name: "Tech & Travel Blog",
     url: "https://guilherme.stracini.com.br/blog",

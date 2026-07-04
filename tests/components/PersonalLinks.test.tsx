@@ -20,13 +20,6 @@ describe("PersonalLinks component", () => {
       "https://zerocool.com.br",
     );
 
-    // Verify Personal Blog link
-    const blogLink = screen.getByRole("link", { name: /Personal Blog/i });
-    expect(blogLink).toHaveAttribute(
-      "href",
-      "https://blog.guilhermebranco.com.br",
-    );
-
     // Verify GitHub links
     const githubLinks = screen.getAllByRole("link", { name: /GitHub/i });
     expect(githubLinks).toHaveLength(3);
