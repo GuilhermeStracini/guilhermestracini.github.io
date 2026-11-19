@@ -17,7 +17,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^3.5.0",
-    "axios": "^1.21.0",
+    "axios": "^1.21.1",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },
@@ -35,7 +35,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.8",
     "globals": "^17.14.0",
-    "jsdom": "^31.0.0",
+    "jsdom": "^31.0.1",
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.72.2",
     "vite": "^8.3.8",
